@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Foro Klesis</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script defer src="../js/storage.js"></script>
+    <script defer src="../js/main.js"></script>
+  </head>
+  <body data-base-path="../" data-require-segment="adult">
+    <header>
+      <nav class="nav" aria-label="Principal">
+        <a class="nav__brand" href="../index.html">
+          <span class="nav__brand-badge" aria-hidden="true">K</span>
+          Klesis
+        </a>
+        <div class="nav__links" role="list">
+          <a href="auth/segment.html">Autenticación</a>
+          <a href="tarea/vocacional.html">Plan profesional</a>
+          <a href="foro.html" aria-current="page">Foro (adultos)</a>
+        </div>
+        <div class="nav__actions">
+          <div class="nav__dropdown" data-dropdown>
+            <button
+              class="btn btn--outline nav__dropdown-toggle"
+              type="button"
+              data-dropdown-toggle
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="navExploreMenu"
+            >
+              Explorar
+              <span class="nav__dropdown-icon" aria-hidden="true">▾</span>
+            </button>
+            <div class="nav__dropdown-menu hidden" id="navExploreMenu" role="menu" data-dropdown-menu>
+              <a role="menuitem" href="tarea/vocacional.html">Evaluación profesional</a>
+              <a role="menuitem" href="foro.html">Foro (adultos)</a>
+              <a role="menuitem" href="soporte/atencion.html">Solicitar mentoría</a>
+            </div>
+          </div>
+          <a class="btn btn--primary" href="auth/login_mayordeedad.html">Ingresar</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="layout-page" style="max-width: 1080px">
+      <section class="section__header" style="text-align: left; margin-bottom: 3rem">
+        <span class="section__eyebrow">Foro moderado</span>
+        <h1 class="section__title">Comparte tus avances y resuelve dudas</h1>
+        <p class="section__lead">
+          Este espacio está reservado para profesionales y estudiantes mayores de edad. Nuestro equipo modera activamente cada conversación.
+        </p>
+      </section>
+
+      <section class="dashboard-card" style="margin-bottom: 2rem">
+        <header class="dashboard-card__title">
+          <span>Hilos recientes</span>
+          <a href="auth/login_mayordeedad.html" class="btn btn--outline">Participar</a>
+        </header>
+        <div class="forum-list" id="forumList">
+          <article class="forum-thread">
+            <h2 class="feature-card__title">Buenas prácticas para compartir informes</h2>
+            <div class="forum-thread__meta">
+              <span>Segmento adulto</span>
+              <span>8 respuestas</span>
+              <span>Hace 2 horas</span>
+            </div>
+            <div class="forum-thread__tags">
+              <span class="tag">adultos</span>
+              <span class="tag">informes</span>
+            </div>
+          </article>
+          <article class="forum-thread">
+            <h2 class="feature-card__title">Recomendaciones para primeras mentorías</h2>
+            <div class="forum-thread__meta">
+              <span>Segmento adulto</span>
+              <span>12 respuestas</span>
+              <span>Ayer</span>
+            </div>
+            <div class="forum-thread__tags">
+              <span class="tag">adultos</span>
+              <span class="tag">mentorías</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Klesis</div>
+          <p>Construimos rutas vocacionales seguras para cada etapa.</p>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Plataforma</div>
+          <ul class="footer__list">
+            <li><a href="auth/segment.html">Crear cuenta</a></li>
+            <li><a href="auth/login_mayordeedad.html">Ingresar adulto</a></li>
+          </ul>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Recursos</div>
+          <ul class="footer__list">
+            <li><a href="tarea/vocacional.html">Plan profesional</a></li>
+            <li><a href="soporte/atencion.html">Atención al cliente</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

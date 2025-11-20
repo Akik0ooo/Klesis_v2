@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crear cuenta (Mayor de edad) | Klesis</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <script defer src="../../js/storage.js"></script>
+    <script defer src="../../js/auth.js"></script>
+  </head>
+  <body data-base-path="../../">
+    <main class="layout-auth">
+      <a href="../../index.html" class="nav__brand" style="margin-bottom: 1.5rem">
+        <span class="nav__brand-badge" aria-hidden="true">K</span>
+        Klesis
+      </a>
+      <section class="card card--split">
+        <div>
+          <div class="badge badge--adult">Mayor de edad</div>
+          <h1>Potencia tu ruta profesional</h1>
+          <p class="form__helper">
+            Accede a análisis avanzados, foros especializados y seguimiento personalizado. Tu correo nos permite proteger tu información y compartir reportes.
+          </p>
+          <ul class="supporting-card__list">
+            <li>Cuestionario vocacional profesional con más de 20 preguntas.</li>
+            <li>Portafolio y mentorías con especialistas certificados.</li>
+            <li>Integración con foros y recursos exclusivos para mayores.</li>
+          </ul>
+        </div>
+        <form class="form" id="registerAdultForm" novalidate>
+          <div class="account-switch">
+            <p class="form__helper" style="margin: 0">¿Tu cuenta es de menor o mayor?</p>
+            <div class="account-switch__actions">
+              <a class="btn btn--outline" href="register_menor.html">Registrar menor</a>
+              <span class="btn btn--primary" aria-current="true">Registrar mayor</span>
+            </div>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="adultFirstName">Nombre</label>
+            <input class="form__input" type="text" id="adultFirstName" name="firstName" required autocomplete="given-name" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="adultLastName">Apellido</label>
+            <input class="form__input" type="text" id="adultLastName" name="lastName" required autocomplete="family-name" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="adultEmail">Correo electrónico</label>
+            <input class="form__input" type="email" id="adultEmail" name="email" required autocomplete="email" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="adultPassword">Contraseña</label>
+            <input class="form__input" type="password" id="adultPassword" name="password" required minlength="8" autocomplete="new-password" aria-describedby="adultPasswordRules" />
+            <p class="form__helper" id="adultPasswordRules">Mínimo 8 caracteres combinando letras y números.</p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="adultConfirmPassword">Confirmar contraseña</label>
+            <input class="form__input" type="password" id="adultConfirmPassword" name="confirmPassword" required autocomplete="new-password" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="adultInterests">Áreas de interés (opcional)</label>
+            <textarea class="form__input" id="adultInterests" name="interests" rows="3" placeholder="Tecnología, salud, educación..."></textarea>
+          </div>
+          <div class="form__error" data-error aria-live="polite"></div>
+          <button class="btn btn--primary" type="submit">Crear cuenta</button>
+          <button class="btn btn--outline" type="button" data-google-signin>
+            Crear cuenta con Google
+          </button>
+          <p class="form__helper">
+            ¿Ya tienes una cuenta? <a href="login_mayordeedad.html">Inicia sesión como mayor</a> o <a href="login_menor.html">cambia a modo menor</a>.
+          </p>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

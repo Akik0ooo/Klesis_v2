@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Iniciar sesión (Mayor de edad) | Klesis</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <script defer src="../../js/storage.js"></script>
+    <script defer src="../../js/auth.js"></script>
+  </head>
+  <body data-base-path="../../">
+    <main class="layout-auth">
+      <a href="../../index.html" class="nav__brand" style="margin-bottom: 1.5rem">
+        <span class="nav__brand-badge" aria-hidden="true">K</span>
+        Klesis
+      </a>
+      <section class="card card--split">
+        <div>
+          <div class="badge badge--adult">Mayor de edad</div>
+          <h1>Retoma tus decisiones profesionales</h1>
+          <p class="form__helper">
+            Accede a tus métricas, recomendaciones de carrera y foros especializados.
+            Puedes mantener tu sesión activa en este dispositivo si es de uso personal.
+          </p>
+          <ul class="supporting-card__list">
+            <li>Progreso del test vocacional y reportes descargables.</li>
+            <li>Historial de mentorías y seguimiento personalizado.</li>
+            <li>Acceso prioritario a soporte y recursos de empleabilidad.</li>
+          </ul>
+        </div>
+        <form class="form" id="loginAdultForm" novalidate>
+          <div class="account-switch">
+            <p class="form__helper" style="margin: 0">¿Tu cuenta es de menor o mayor?</p>
+            <div class="account-switch__actions">
+              <a class="btn btn--outline" href="login_menor.html">Soy menor</a>
+              <span class="btn btn--primary" aria-current="true">Soy mayor</span>
+            </div>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="adultEmail">Correo electrónico</label>
+            <input class="form__input" type="email" id="adultEmail" name="email" required autocomplete="email" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="adultPassword">Contraseña</label>
+            <input class="form__input" type="password" id="adultPassword" name="password" required autocomplete="current-password" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="adultRemember">
+                <input type="checkbox" id="adultRemember" name="remember" /> Mantener sesión iniciada
+            </label>
+          </div>
+          <div class="form__error" data-error aria-live="polite"></div>
+          <button class="btn btn--primary" type="submit">Ingresar</button>
+          <button class="btn btn--outline" type="button" data-google-signin>
+            Iniciar sesión con Google
+          </button>
+          <p class="form__helper">
+            ¿Necesitas crear una cuenta? <a href="register_mayordeedad.html">Regístrate como mayor</a>.
+            Si eres menor, <a href="register_menor.html">crea tu cuenta lúdica aquí</a>.
+          </p>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

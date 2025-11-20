@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mi perfil | Klesis</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <script defer src="../../js/storage.js"></script>
+    <script defer src="../../js/main.js"></script>
+    <script defer src="../../js/careers_catalog.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+    <script defer src="../../js/profile.js"></script>
+  </head>
+  <body data-base-path="../../" data-require-auth="true">
+    <header>
+      <nav class="nav" aria-label="Principal">
+        <a class="nav__brand" href="../../index.html">
+          <span class="nav__brand-badge" aria-hidden="true">K</span>
+          Klesis
+        </a>
+        <div class="nav__links" role="list"></div>
+        <div class="nav__actions"></div>
+      </nav>
+    </header>
+
+    <main class="layout-page profile-layout" style="max-width: 1020px">
+      <section class="card profile-section" aria-labelledby="profileHeading">
+        <div class="profile-header">
+          <div class="profile-avatar" data-profile-avatar aria-hidden="true">K</div>
+          <div class="profile-summary">
+            <span class="badge" data-profile-segment>Perfil</span>
+            <h1 class="profile-name" id="profileHeading" data-profile-name>Usuario</h1>
+            <p class="profile-role" data-profile-role>
+              Configura tu perfil, gestiona favoritos y comparte tus resultados.
+            </p>
+            <div class="profile-meta">
+              <span data-profile-identifier></span>
+              <span data-profile-following></span>
+              <span data-profile-updated></span>
+            </div>
+            <div class="profile-actions">
+              <button
+                class="btn btn--outline"
+                type="button"
+                data-profile-edit-toggle
+                aria-expanded="false"
+                aria-controls="profileIdentitySection profileSecuritySection"
+              >
+                <span data-profile-edit-label>Editar perfil</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="card profile-section hidden"
+        aria-labelledby="identityTitle"
+        id="profileIdentitySection"
+        data-profile-edit-section
+      >
+        <div>
+          <h2 id="identityTitle">Configura tu identidad</h2>
+          <p class="form__helper">
+            Actualiza tu nombre para mostrar, agrega una URL de foto de perfil y, si eres mayor de edad, mantén tu información profesional al día.
+          </p>
+        </div>
+        <form class="profile-inline-form" id="profileIdentityForm" data-identity-form>
+          <div class="form__field" data-identity-field="firstName">
+            <label class="form__label" for="identityFirstName">Nombre</label>
+            <input class="form__input" type="text" id="identityFirstName" name="firstName" autocomplete="given-name" />
+          </div>
+          <div class="form__field" data-identity-field="lastName">
+            <label class="form__label" for="identityLastName">Apellido</label>
+            <input class="form__input" type="text" id="identityLastName" name="lastName" autocomplete="family-name" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="identityDisplayName">Nombre para mostrar</label>
+            <input class="form__input" type="text" id="identityDisplayName" name="displayName" required />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="identityAvatarUrl">URL de foto de perfil</label>
+            <input class="form__input" type="url" id="identityAvatarUrl" name="avatarUrl" placeholder="https://tu-foto.jpg" />
+          </div>
+          <div class="form__field" style="grid-column: 1 / -1">
+            <button class="btn btn--primary" type="submit">Guardar cambios</button>
+            <p class="profile-form-feedback" data-identity-feedback></p>
+          </div>
+        </form>
+      </section>
+
+      <section
+        class="card profile-section hidden"
+        aria-labelledby="securityTitle"
+        id="profileSecuritySection"
+        data-profile-edit-section
+      >
+        <div>
+          <h2 id="securityTitle">Actualizar contraseña</h2>
+          <p class="form__helper">
+            Por seguridad necesitamos tu contraseña actual antes de guardar la nueva.
+          </p>
+        </div>
+        <form class="profile-inline-form" id="profilePasswordForm" data-password-form>
+          <div class="form__field">
+            <label class="form__label" for="currentPassword">Contraseña actual</label>
+            <input class="form__input" type="password" id="currentPassword" name="currentPassword" required minlength="8" autocomplete="current-password" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="newPassword">Nueva contraseña</label>
+            <input class="form__input" type="password" id="newPassword" name="newPassword" required minlength="8" autocomplete="new-password" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="confirmPassword">Confirmar contraseña</label>
+            <input class="form__input" type="password" id="confirmPassword" name="confirmPassword" required minlength="8" autocomplete="new-password" />
+          </div>
+          <div class="form__field" style="grid-column: 1 / -1">
+            <button class="btn btn--outline" type="submit">Actualizar contraseña</button>
+            <p class="profile-form-feedback" data-password-feedback></p>
+          </div>
+        </form>
+      </section>
+
+      <section class="card profile-section" aria-labelledby="favoritesTitle">
+        <div class="profile-section__intro">
+          <div>
+            <h2 id="favoritesTitle">Mis carreras favoritas</h2>
+            <p class="form__helper">Explora la biblioteca global y guarda las que se ajusten a tu perfil.</p>
+          </div>
+          <div class="favorite-toolbar">
+            <button class="btn btn--minor" type="button" data-career-search-open>
+              <span aria-hidden="true">🔍</span>
+              Buscar carreras
+            </button>
+          </div>
+        </div>
+        <div class="profile-favorite-grid" data-favorite-list role="list"></div>
+        <div class="profile-empty hidden" data-favorite-empty>No has agregado carreras favoritas todavía.</div>
+        <div class="profile-chart profile-chart--favorites hidden" data-favorite-chart-wrapper>
+          <canvas data-favorite-chart aria-label="Comparativa de carreras favoritas" role="img"></canvas>
+        </div>
+        <div class="profile-empty hidden" data-favorite-chart-empty>
+          Guarda al menos una carrera para comparar su compatibilidad con tus resultados.
+        </div>
+      </section>
+
+      <section class="card profile-section" aria-labelledby="interestTitle">
+        <div>
+          <h2 id="interestTitle">Mi radar de intereses</h2>
+          <p class="form__helper">
+            Visualiza tus resultados de test y descubre carreras recomendadas según tu superpoder.
+          </p>
+        </div>
+        <div class="profile-chart" data-profile-chart-wrapper>
+          <canvas data-profile-chart aria-label="Radar de intereses" role="img"></canvas>
+        </div>
+        <div class="profile-empty hidden" data-profile-chart-empty>Aún no registramos resultados. Completa el test de intereses para visualizar tu radar.</div>
+        <div class="profile-recommendations" data-profile-recommendations></div>
+      </section>
+
+      <section class="card profile-section" aria-labelledby="comparisonsTitle">
+        <div>
+          <h2 id="comparisonsTitle">Comparativa de carreras</h2>
+          <p class="form__helper">
+            Documenta ventajas, retos o requisitos de las carreras que estás evaluando.
+          </p>
+        </div>
+        <form class="profile-inline-form" data-comparison-form>
+          <div class="form__field">
+            <label class="form__label" for="comparisonTitle">Carrera</label>
+            <input class="form__input" type="text" id="comparisonTitle" name="title" placeholder="Ej. Ingeniería Industrial" />
+          </div>
+          <div class="form__field" style="grid-column: span 2">
+            <label class="form__label" for="comparisonNotes">Notas</label>
+            <textarea class="form__input" id="comparisonNotes" name="notes" rows="3" placeholder="Apunta tu análisis o acuerdos con mentores"></textarea>
+          </div>
+          <div class="form__field" style="grid-column: 1 / -1">
+            <button class="btn btn--outline" type="submit">Guardar comparativa</button>
+            <p class="profile-form-feedback" data-comparison-feedback></p>
+          </div>
+        </form>
+        <div class="profile-comparisons" data-comparison-list></div>
+        <div class="profile-empty hidden" data-comparison-empty>No tienes comparativas guardadas.</div>
+      </section>
+
+      <section class="card profile-section" aria-labelledby="followTitle">
+        <div>
+          <h2 id="followTitle">Red de seguimiento</h2>
+          <p class="form__helper">
+            Sigue cuentas de tu mismo segmento para recibir actualizaciones en tu panel. Los menores de edad solo pueden seguir perfiles de menores aprobados.
+          </p>
+        </div>
+        <form class="profile-inline-form" data-follow-form>
+          <div class="form__field">
+            <label class="form__label" for="followInput">Buscar por nombre</label>
+            <input class="form__input" type="text" id="followInput" name="query" placeholder="Nombre o nickname" />
+          </div>
+          <div class="form__field" style="align-self: end">
+            <button class="btn btn--primary" type="submit">Seguir</button>
+          </div>
+          <div class="form__field" style="grid-column: 1 / -1">
+            <p class="profile-form-feedback" data-follow-feedback></p>
+          </div>
+        </form>
+        <div class="profile-follow-list" data-following-list></div>
+        <div class="profile-empty hidden" data-following-empty>No sigues a nadie por ahora.</div>
+      </section>
+
+      <section class="card profile-section hidden" aria-labelledby="accountCloseTitle" data-account-close-card>
+        <div>
+          <h2 id="accountCloseTitle">Cerrar cuenta</h2>
+          <p class="form__helper">
+            Si decides cerrar tu cuenta eliminaremos tus resultados, favoritos y progreso guardado. Avisa a tu tutor antes de continuar.
+          </p>
+        </div>
+        <div class="profile-actions" style="margin-top: 1rem">
+          <button class="btn btn--danger" type="button" data-account-close>Cerrar mi cuenta</button>
+        </div>
+        <p class="profile-form-feedback" data-account-close-feedback></p>
+      </section>
+    </main>
+
+    <div class="career-search-overlay" data-career-search-overlay>
+      <div class="career-search-panel" role="dialog" aria-modal="true" aria-labelledby="careerSearchTitle">
+        <button class="career-search__close" type="button" data-career-search-close aria-label="Cerrar buscador">×</button>
+        <header class="career-search__header">
+          <h2 id="careerSearchTitle">Buscar carreras</h2>
+          <p>Filtra por universidad, costo y afinidad para descubrir programas alineados con tu perfil.</p>
+        </header>
+        <form class="career-search__controls" data-career-search-form>
+          <label class="career-search__field">
+            <span>Palabra clave</span>
+            <input type="search" data-career-search-query placeholder="Ej. ingeniería, diseño..." autocomplete="off" />
+          </label>
+          <label class="career-search__field">
+            <span>Universidad</span>
+            <select data-career-search-university>
+              <option value="all">Todas</option>
+            </select>
+          </label>
+          <label class="career-search__field">
+            <span>Costo</span>
+            <select data-career-search-cost>
+              <option value="all">Todos los costos</option>
+              <option value="bajo">Costo bajo</option>
+              <option value="medio">Costo medio</option>
+              <option value="alto">Costo alto</option>
+            </select>
+          </label>
+        </form>
+        <div class="career-search__results" data-career-search-results role="list"></div>
+      </div>
+    </div>
+
+    <div class="career-modal" data-career-modal>
+      <div class="career-modal__content" role="dialog" aria-modal="true" aria-labelledby="careerModalTitle">
+        <button class="career-modal__close" type="button" data-career-modal-close aria-label="Cerrar detalles">×</button>
+        <header class="career-modal__header">
+          <span class="career-modal__emoji" data-career-modal-emoji>🎓</span>
+          <div>
+            <h3 id="careerModalTitle" data-career-modal-title>Nombre de la carrera</h3>
+            <p data-career-modal-summary></p>
+          </div>
+        </header>
+        <section class="career-modal__section">
+          <h4>Universidades destacadas</h4>
+          <ul data-career-modal-universities></ul>
+        </section>
+        <section class="career-modal__section">
+          <h4>Enfoque y habilidades</h4>
+          <ul class="career-modal__tags" data-career-modal-tags></ul>
+        </section>
+        <footer class="career-modal__actions">
+          <button class="btn btn--minor" type="button" data-career-modal-favorite>
+            <span aria-hidden="true">⭐</span>
+            <span data-career-modal-favorite-label>Añadir a favoritos</span>
+          </button>
+        </footer>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Klesis</div>
+          <p>Construimos rutas vocacionales seguras para cada etapa.</p>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Plataforma</div>
+          <ul class="footer__list">
+            <li><a href="../auth/segment.html">Crear cuenta</a></li>
+            <li><a href="../auth/login_mayordeedad.html">Ingresar adulto</a></li>
+            <li><a href="../auth/login_menor.html">Ingresar menor</a></li>
+          </ul>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Recursos</div>
+          <ul class="footer__list">
+            <li><a href="../tarea/vocacional.html">Plan profesional</a></li>
+            <li><a href="../tarea/otros-test.html">Misiones</a></li>
+            <li><a href="../soporte/atencion.html">Atención al cliente</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

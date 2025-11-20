@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Selecciona tu segmento | Klesis</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <script defer src="../../js/storage.js"></script>
+    <script defer src="../../js/auth.js"></script>
+  </head>
+  <body data-base-path="../../">
+    <main class="layout-auth">
+      <a href="../../index.html" class="nav__brand" style="margin-bottom: 1.5rem">
+        <span class="nav__brand-badge" aria-hidden="true">K</span>
+        Klesis
+      </a>
+      <section class="card" aria-labelledby="segmentHeading">
+        <header style="text-align: center; display: grid; gap: 0.5rem; margin-bottom: 2rem">
+          <span class="badge badge--adult">Crear cuenta</span>
+          <h1 id="segmentHeading">Primero queremos saber si eres mayor o menor de edad</h1>
+          <p class="form__helper" style="margin: 0 auto; max-width: 480px">
+            Personalizamos el registro, la privacidad y los contenidos según tu segmento. Elige la opción que te corresponda para continuar.
+          </p>
+        </header>
+        <div style="display: grid; gap: 1rem; max-width: 420px; margin: 0 auto">
+          <button class="btn btn--primary" type="button" data-select-segment="adult">
+            Registrar cuenta mayor de edad
+          </button>
+          <button class="btn btn--minor" type="button" data-select-segment="minor">
+            Registrar cuenta menor de edad
+          </button>
+        </div>
+        <p class="form__helper" style="text-align: center; margin-top: 1.5rem">
+          ¿Ya tienes una cuenta? <a href="login_mayordeedad.html">Inicia sesión como mayor</a> o <a href="login_menor.html">ingresa como menor</a>.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

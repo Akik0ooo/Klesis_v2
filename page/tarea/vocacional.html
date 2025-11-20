@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plan profesional | Klesis</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+    <script defer src="../../js/storage.js"></script>
+    <script defer src="../../js/main.js"></script>
+    <script defer src="../../js/adult_quiz.js"></script>
+    <script defer src="../../js/adult_vocational_test.js"></script>
+  </head>
+  <body data-base-path="../../" data-require-segment="adult">
+    <header>
+      <nav class="nav" aria-label="Principal">
+        <a class="nav__brand" href="../../index.html">
+          <span class="nav__brand-badge" aria-hidden="true">K</span>
+          Klesis
+        </a>
+        <div class="nav__links" role="list">
+          <a href="../auth/segment.html">Autenticación</a>
+          <a href="vocacional.html" aria-current="page">Plan profesional</a>
+          <a href="../soporte/atencion.html">Atención al cliente</a>
+        </div>
+        <div class="nav__actions">
+          <div class="nav__dropdown" data-dropdown>
+            <button
+              class="btn btn--outline nav__dropdown-toggle"
+              type="button"
+              data-dropdown-toggle
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="navExploreMenu"
+            >
+              Explorar
+              <span class="nav__dropdown-icon" aria-hidden="true">▾</span>
+            </button>
+            <div class="nav__dropdown-menu hidden" id="navExploreMenu" role="menu" data-dropdown-menu>
+              <a role="menuitem" href="vocacional.html">Evaluación profesional</a>
+              <a role="menuitem" href="../foro.html">Foro de adultos</a>
+              <a role="menuitem" href="../soporte/atencion.html">Mentoría</a>
+            </div>
+          </div>
+          <a class="btn btn--primary" href="../auth/segment.html">Crear cuenta</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="layout-page" style="max-width: 980px">
+      <section class="hero hero--adult" style="margin-bottom: 2.5rem">
+        <div>
+          <span class="hero__badge hero__badge--adult">Plan profesional</span>
+          <h1 class="hero__title">Evalúa tus habilidades y planifica tu próxima decisión laboral.</h1>
+          <p class="hero__subtitle">
+            Accede a una evaluación estructurada, informes descargables y un calendario de mentorías. Todo el contenido de este módulo está diseñado solo para mayores de edad.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#diagnostico">Iniciar diagnóstico</a>
+            <a class="btn btn--outline" href="../soporte/atencion.html">Solicitar acompañamiento</a>
+          </div>
+          <div class="hero__stats" aria-label="Indicadores del plan">
+            <article class="hero__stat-card">
+              <div class="hero__stat-value">5</div>
+              <p>Dimensiones evaluadas: intereses, habilidades, propósito, mercado y bienestar.</p>
+            </article>
+            <article class="hero__stat-card">
+              <div class="hero__stat-value">3</div>
+              <p>Informes descargables listos para compartir con tu mentor.</p>
+            </article>
+            <article class="hero__stat-card">
+              <div class="hero__stat-value">60 min</div>
+              <p>Tiempo promedio para completar el plan profesional.</p>
+            </article>
+          </div>
+        </div>
+        <aside class="hero__card" aria-label="Componentes del plan">
+          <h2 class="feature-card__title">¿Qué incluye?</h2>
+          <ul class="supporting-card__list">
+            <li>Diagnóstico cuantitativo con métricas accionables.</li>
+            <li>Mapa de escenarios profesionales priorizados.</li>
+            <li>Checklist de acciones para los próximos 90 días.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section id="diagnostico" class="section" style="padding-top: 0">
+        <header class="section__header" style="margin-bottom: 2rem">
+          <span class="section__eyebrow">Metodología</span>
+          <h2 class="section__title">Así evaluamos tu perfil</h2>
+          <p class="section__lead">
+            Tres bloques organizan la experiencia: autoevaluación, contraste con roles del mercado y definición de un plan de acción profesional.
+          </p>
+          <p class="section__lead" style="font-size: 1rem; color: rgba(15, 23, 42, 0.78)">
+            Cada bloque concluye con entregables ejecutivos para alinear expectativas con tu mentor, calcular brechas de talento y priorizar oportunidades de desarrollo profesional.
+          </p>
+        </header>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-card__icon feature-card__icon--adult" aria-hidden="true">🧭</div>
+            <h3 class="feature-card__title">Autodiagnóstico</h3>
+            <p class="feature-card__copy">
+              Identifica tus intereses dominantes, habilidades transferibles y valores profesionales. Utilizamos escalas Likert y prompts reflexivos.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-card__icon feature-card__icon--adult" aria-hidden="true">📊</div>
+            <h3 class="feature-card__title">Cruce con mercado</h3>
+            <p class="feature-card__copy">
+              Compara tus resultados con proyecciones laborales regionales. Detecta vacíos de habilidades y oportunidades de especialización.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-card__icon feature-card__icon--community" aria-hidden="true">🧑‍🏫</div>
+            <h3 class="feature-card__title">Mentorías</h3>
+            <p class="feature-card__copy">
+              Agenda sesiones personalizadas, recibe feedback y consolida acuerdos en un tablero compartido con el mentor.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section supporting" style="padding-top: 2rem">
+        <div class="supporting__grid">
+          <article class="supporting-card">
+            <h3 class="supporting-card__title">Preparación previa</h3>
+            <ul class="supporting-card__list">
+              <li>Reúne tu CV y principales logros.</li>
+              <li>Identifica experiencias que quieras potenciar.</li>
+              <li>Define el horizonte temporal de tu plan.</li>
+            </ul>
+          </article>
+          <article class="supporting-card">
+            <h3 class="supporting-card__title">Resultados</h3>
+            <ul class="supporting-card__list">
+              <li>Gráficos comparativos por dimensión.</li>
+              <li>Ruta de aprendizaje priorizada.</li>
+              <li>Checklist de acciones inmediatas.</li>
+            </ul>
+          </article>
+          <article class="supporting-card">
+            <h3 class="supporting-card__title">Próximos pasos</h3>
+            <ul class="supporting-card__list">
+              <li>Solicita mentoría o talleres grupales.</li>
+              <li>Comparte el informe en PDF con tus aliados.</li>
+              <li>Configura recordatorios mensuales dentro de Klesis.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+        <section id="learning-style" class="section" style="padding-top: 0">
+          <header class="section__header" style="margin-bottom: 2.5rem">
+            <span class="section__eyebrow">Autodiagnóstico</span>
+            <h2 class="section__title">Test de estilo de aprendizaje</h2>
+            <p class="section__lead">
+              Evalúa si tu estilo predominante es visual, auditivo, kinestésico o lógico. El proceso combina imágenes, decisiones binarias y un panel comparativo.
+            </p>
+            <p class="section__lead" style="font-size: 1rem; color: rgba(15, 23, 42, 0.78)">
+              Guarda los resultados en tu perfil para nutrir las comparativas y recomendaciones del panel profesional.
+            </p>
+          </header>
+
+          <div class="learning-quiz card" data-learning-quiz>
+            <header class="learning-quiz__header">
+              <div>
+                <h3 class="learning-quiz__title">🧠 Descubre cómo aprendes mejor</h3>
+                <p class="learning-quiz__subtitle">
+                  Analizamos 10 afirmaciones con soporte visual para identificar tu estilo de aprendizaje predominante.
+                </p>
+              </div>
+              <div class="learning-quiz__meta">
+                <span class="badge badge--adult">Enfoque profesional</span>
+                <span class="badge badge--ghost">Duración 8 minutos</span>
+              </div>
+            </header>
+
+            <div class="learning-quiz__step" data-learning-step="welcome">
+              <div class="learning-quiz__welcome">
+                <p>
+                  Cada tarjeta presenta una situación cotidiana. Si te identificas, presiona <strong>¡Me identifico!</strong>. Si no es tu caso, selecciona <strong>Omitir</strong>.
+                </p>
+                <button class="btn btn--primary learning-quiz__primary" type="button" data-learning-start>
+                  Iniciar autodiagnóstico 🚀
+                </button>
+              </div>
+            </div>
+
+            <div class="learning-quiz__step hidden" data-learning-step="quiz">
+              <div class="learning-quiz__progress" aria-live="polite">
+                <span>Afirmación <strong data-learning-index>1</strong> de <strong data-learning-total>10</strong></span>
+                <div class="learning-quiz__progress-bar">
+                  <div class="learning-quiz__progress-meter" data-learning-progress style="width: 0%"></div>
+                </div>
+              </div>
+              <figure class="learning-quiz__card">
+                <img class="learning-quiz__image" data-learning-image alt="Escenario de aprendizaje" />
+                <figcaption class="learning-quiz__question" data-learning-question>Pregunta aquí</figcaption>
+              </figure>
+              <div class="learning-quiz__actions">
+                <button class="btn btn--outline" type="button" data-learning-skip>Omitir</button>
+                <button class="btn btn--primary" type="button" data-learning-identify>¡Me identifico!</button>
+              </div>
+            </div>
+
+            <div class="learning-quiz__step hidden" data-learning-step="results">
+              <h4 class="learning-quiz__question">¡Tu estilo principal está listo! 🎯</h4>
+              <div class="learning-quiz__results">
+                <div class="learning-quiz__chart">
+                  <canvas data-learning-chart aria-label="Comparativa de estilos" role="img"></canvas>
+                </div>
+                <div class="learning-quiz__summary">
+                  <h3 class="learning-quiz__highlight" data-learning-main>Estilo</h3>
+                  <p class="learning-quiz__copy" data-learning-recommendation></p>
+                  <button class="btn btn--primary" type="button" data-learning-save>Guardar en mi perfil</button>
+                  <button class="btn btn--outline" type="button" data-learning-repeat>Reiniciar test</button>
+                  <p class="learning-quiz__status" data-learning-feedback aria-live="polite"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="vocational-compass" class="section" style="padding-top: 0">
+          <header class="section__header" style="margin-bottom: 2.5rem">
+            <span class="section__eyebrow">Diagnóstico avanzado</span>
+            <h2 class="section__title">Test inicial de perfil vocacional (30 ítems)</h2>
+            <p class="section__lead">
+              Evalúa seis áreas de interés profesional (técnico, investigación, creativo, social, liderazgo y detalle) mediante afirmaciones con escala Likert.
+            </p>
+            <p class="section__lead" style="font-size: 1rem; color: rgba(15, 23, 42, 0.78)">
+              Al finalizar podrás guardar tu código vocacional en el perfil y contrastarlo con tus comparativas profesionales.
+            </p>
+          </header>
+
+          <div class="vocational-test card" data-voc-app>
+            <header class="vocational-test__header">
+              <div>
+                <h3 class="vocational-test__title">🧭 Tu brújula vocacional</h3>
+                <p class="vocational-test__subtitle">
+                  Responde con sinceridad qué tanto te identificas con cada afirmación. Escala de 1 (nada de acuerdo) a 5 (totalmente de acuerdo).
+                </p>
+              </div>
+              <div class="vocational-test__meta">
+                <span class="badge badge--adult">Solo mayores de edad</span>
+                <span class="badge badge--ghost">30 preguntas · 8 minutos</span>
+              </div>
+            </header>
+
+            <div class="vocational-test__step" data-voc-step="welcome">
+              <div class="vocational-test__welcome">
+                <p>Identifica tus dos áreas dominantes y recibe un código vocacional inspirado en metodologías RIASEC adaptadas al contexto latinoamericano.</p>
+                <p>El puntaje de cada área se calcula de forma automática. Podrás repetir el diagnóstico cuando quieras para medir tu evolución.</p>
+                <button class="btn btn--primary vocational-test__primary" type="button" data-voc-start>
+                  Iniciar diagnóstico 🚀
+                </button>
+              </div>
+            </div>
+
+            <div class="vocational-test__step hidden" data-voc-step="quiz">
+              <div class="vocational-test__progress" aria-live="polite">
+                <span>Pregunta <strong data-voc-index>1</strong> de <strong data-voc-total>30</strong></span>
+                <div class="vocational-test__progress-bar">
+                  <div class="vocational-test__progress-meter" data-voc-progress style="width: 0%"></div>
+                </div>
+              </div>
+              <article class="vocational-test__question-card">
+                <h3 class="vocational-test__question" data-voc-question>Pregunta</h3>
+                <div style="text-align: center; color: rgba(15, 23, 42, 0.6)">
+                  <p style="margin: 0">Selecciona tu nivel de acuerdo</p>
+                </div>
+                <div class="score-selector" data-voc-options></div>
+              </article>
+              <div class="vocational-test__actions">
+                <button class="btn btn--primary" type="button" data-voc-next disabled>Siguiente pregunta</button>
+              </div>
+            </div>
+
+            <div class="vocational-test__step hidden" data-voc-step="results">
+              <h3 class="vocational-test__question">¡Tu código vocacional está listo! 💡</h3>
+              <div class="profile-chart" style="min-height: 360px">
+                <canvas data-voc-chart aria-label="Radar de intereses vocacionales" role="img"></canvas>
+              </div>
+              <div class="profile-recommendations" data-voc-summary>
+                <strong data-voc-code>Tus áreas líderes</strong>
+                <p data-voc-copy></p>
+              </div>
+              <div class="vocational-test__actions">
+                <button class="btn btn--primary" type="button" data-voc-save>Guardar en mi perfil</button>
+                <button class="btn btn--outline" type="button" data-voc-repeat>Reiniciar test</button>
+              </div>
+              <p class="vocational-test__status" data-voc-feedback aria-live="polite"></p>
+            </div>
+          </div>
+        </section>
+    </main>
+
+    <footer>
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Klesis</div>
+          <p>Construimos rutas vocacionales seguras para cada etapa.</p>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Plataforma</div>
+          <ul class="footer__list">
+            <li><a href="../auth/segment.html">Crear cuenta</a></li>
+            <li><a href="../auth/login_mayordeedad.html">Ingresar adulto</a></li>
+          </ul>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Recursos</div>
+          <ul class="footer__list">
+            <li><a href="vocacional.html">Plan profesional</a></li>
+            <li><a href="../foro.html">Foro (adultos)</a></li>
+            <li><a href="../soporte/atencion.html">Atención al cliente</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

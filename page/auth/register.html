@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crear cuenta | Klesis</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <script defer src="../../js/storage.js"></script>
+    <script defer src="../../js/auth.js"></script>
+  </head>
+  <body>
+    <main class="layout-auth">
+      <a href="../../index.html" class="nav__brand" style="margin-bottom: 1.5rem">
+        <span class="nav__brand-badge" aria-hidden="true">K</span>
+        Klesis
+      </a>
+      <section class="card card--split">
+        <div>
+          <div class="badge badge--adult" id="segmentBadge">Registro</div>
+          <h1 id="segmentTitle">Comienza tu experiencia Klesis</h1>
+          <p class="form__helper" id="segmentCopy">
+            Validamos tu edad para personalizar los módulos. Los perfiles menores
+            necesitan un correo de tutor responsable para activar los espacios
+            comunitarios.
+          </p>
+          <ul class="supporting-card__list" id="segmentList">
+            <li>Mayores: itinerario profesional y métricas avanzadas.</li>
+            <li>Menores: quiz gamificado y acompañamiento familiar.</li>
+            <li>Seguimiento CM-4 para conectar con profesionales afines.</li>
+          </ul>
+        </div>
+        <form class="form" id="registerForm" novalidate>
+          <div class="form__field">
+            <label class="form__label" for="firstName">Nombre</label>
+            <input class="form__input" type="text" id="firstName" name="firstName" required autocomplete="given-name" />
+            <p class="form__helper">Como quieres que la comunidad te identifique.</p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="lastName">Apellido</label>
+            <input class="form__input" type="text" id="lastName" name="lastName" required autocomplete="family-name" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="email">Correo electrónico</label>
+            <input class="form__input" type="email" id="email" name="email" required autocomplete="email" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="birthdate">Fecha de nacimiento</label>
+            <input class="form__input" type="date" id="birthdate" name="birthdate" required />
+            <p class="form__helper">Restringimos el acceso comunitario si eres menor.</p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="password">Contraseña</label>
+            <input
+              class="form__input"
+              type="password"
+              id="password"
+              name="password"
+              required
+              minlength="8"
+              autocomplete="new-password"
+              aria-describedby="passwordRules"
+            />
+            <p class="form__helper" id="passwordRules">Mínimo 8 caracteres con letras y números.</p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="confirmPassword">Confirmar contraseña</label>
+            <input class="form__input" type="password" id="confirmPassword" name="confirmPassword" required autocomplete="new-password" />
+          </div>
+          <div class="form__field" id="guardianField" hidden>
+            <label class="form__label" for="guardianEmail">Correo de tutor responsable</label>
+            <input class="form__input" type="email" id="guardianEmail" name="guardianEmail" autocomplete="email" />
+            <p class="form__helper">Lo solicitamos únicamente para cuentas de menores.</p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="interests">Áreas de interés</label>
+            <textarea class="form__input" id="interests" name="interests" rows="3" placeholder="Tecnología, arte, educación..."></textarea>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="acceptTerms">
+              <input type="checkbox" id="acceptTerms" name="acceptTerms" required /> Acepto la política de uso responsable de Klesis.
+            </label>
+          </div>
+          <div id="formErrors" class="form__error" aria-live="polite"></div>
+          <button class="btn btn--primary" type="submit">Crear cuenta</button>
+          <p class="form__helper">¿Ya tienes cuenta? <a href="segment.html">Inicia sesión</a>.</p>
+        </form>
+      </section>
++    </main>
++  </body>
++</html>

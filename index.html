@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Klesis | Orientación vocacional y comunidad educativa</title>
+		<meta
+			name="description"
+			content="Klesis conecta a estudiantes y profesionales con orientación vocacional personalizada, comunidad segura y herramientas colaborativas."
+		/>
+		<link rel="stylesheet" href="css/styles.css" />
+		<script defer src="js/storage.js"></script>
+		<script defer src="js/main.js"></script>
+	</head>
+	<body data-base-path="">
+		<header>
+			<nav class="nav" aria-label="Principal">
+				<a class="nav__brand" href="index.html">
+					<span class="nav__brand-badge" aria-hidden="true">K</span>
+					Klesis
+				</a>
+				<div class="nav__links" role="list">
+					<a href="page/auth/segment.html">Autenticación</a>
+					<a href="page/tarea/vocacional.html">Plan profesional</a>
+					<a href="page/tarea/otros-test.html">Misiones</a>
+					<a href="page/soporte/atencion.html">Atención</a>
+				</div>
+				<div class="nav__actions">
+					<div class="nav__dropdown" data-dropdown>
+						<button
+							class="btn btn--outline nav__dropdown-toggle"
+							type="button"
+							data-dropdown-toggle
+							aria-haspopup="true"
+							aria-expanded="false"
+							aria-controls="navExploreMenu"
+						>
+							Explorar
+							<span class="nav__dropdown-icon" aria-hidden="true">▾</span>
+						</button>
+						<div class="nav__dropdown-menu hidden" id="navExploreMenu" role="menu" data-dropdown-menu>
+							<a role="menuitem" href="page/tarea/vocacional.html">Plan profesional</a>
+							<a role="menuitem" href="page/tarea/otros-test.html">Misiones</a>
+							<a role="menuitem" href="page/soporte/atencion.html">Atención</a>
+							<a role="menuitem" href="page/foro.html">Foro (adultos)</a>
+						</div>
+					</div>
+					<a class="btn btn--primary" href="page/auth/segment.html">Crear cuenta</a>
+				</div>
+			</nav>
+		</header>
+		<main>
+			<div class="segment-view" data-segment-view="guest">
+				<section class="hero">
+					<div>
+						<span class="hero__badge">Empieza tu viaje</span>
+						<h1 class="hero__title">
+							Elige tu modo Klesis y personaliza la experiencia.
+						</h1>
+						<p class="hero__subtitle">
+							Klesis separa por completo la experiencia para adultos y menores.
+							Selecciona el segmento correcto y accede a contenidos, tono y
+							herramientas hechos a tu medida.
+						</p>
+						<div class="hero__actions">
+							<a class="btn btn--primary" href="page/auth/register_mayordeedad.html">Descubrir modo adulto</a>
+							<a class="btn btn--minor" href="page/auth/register_menor.html">Iniciar modo aventura</a>
+						</div>
+						<div class="hero__stats" aria-label="Métricas destacadas">
+							<article class="hero__stat-card">
+								<div class="hero__stat-value">100%</div>
+								<p>Interfaces diferenciadas por edad.</p>
+							</article>
+							<article class="hero__stat-card">
+								<div class="hero__stat-value">48h</div>
+								<p>Tiempo máximo de respuesta de soporte.</p>
+							</article>
+							<article class="hero__stat-card">
+								<div class="hero__stat-value">0</div>
+								<p>Interacciones cruzadas entre segmentos.</p>
+							</article>
+						</div>
+					</div>
+					<aside class="hero__card" aria-label="Segmentos disponibles">
+						<div class="feature-card__badge feature-card__badge--adult">Modo adulto</div>
+						<h2 class="feature-card__title">Decisiones profesionales</h2>
+						<p>
+							Evaluaciones serias, recursos laborales, foros entre colegas y
+							espacios para documentar tu plan profesional sin elementos lúdicos.
+						</p>
+						<div class="feature-card__badge feature-card__badge--minor">Modo aventura</div>
+						<h2 class="feature-card__title">Misiones creativas</h2>
+						<p>
+							Narrativas interactivas, quizzes ilustrados, recompensas y soporte
+							con tutores registrados para menores de edad.
+						</p>
+					</aside>
+				</section>
+
+				<section class="section">
+					<header class="section__header">
+						<span class="section__eyebrow">Experiencias segmentadas</span>
+						<h2 class="section__title">Cada usuario ve solo lo que necesita</h2>
+						<p class="section__lead">
+							Los flujos, contenido y tono cambian según el segmento. No hay cruce
+							de foros ni actividades para mantener la seguridad de la comunidad.
+						</p>
+					</header>
+					<div class="feature-grid">
+						<article class="feature-card">
+							<div class="feature-card__icon feature-card__icon--adult" aria-hidden="true">📈</div>
+							<div class="feature-card__badge feature-card__badge--adult">Modo adulto</div>
+							<h3 class="feature-card__title">Análisis profesional</h3>
+							<p class="feature-card__copy">
+								Reportes, tableros y mentoría para mayores de edad. Sin dinámicas
+								gamificadas.
+							</p>
+							<div class="feature-card__actions">
+								<a class="btn btn--outline" href="page/tarea/vocacional.html">Ver plan profesional</a>
+							</div>
+						</article>
+						<article class="feature-card">
+							<div class="feature-card__icon feature-card__icon--minor" aria-hidden="true">🎮</div>
+							<div class="feature-card__badge feature-card__badge--minor">Modo aventura</div>
+							<h3 class="feature-card__title">Misiones y quizzes</h3>
+							<p class="feature-card__copy">
+								Misiones narradas, tarjetas coleccionables y acompañamiento de
+								tutores para menores.
+							</p>
+							<div class="feature-card__actions">
+								<a class="btn btn--minor" href="page/tarea/otros-test.html">Abrir aventuras</a>
+							</div>
+						</article>
+						<article class="feature-card">
+							<div class="feature-card__icon feature-card__icon--community" aria-hidden="true">🛡️</div>
+							<div class="feature-card__badge">Soporte confiable</div>
+							<h3 class="feature-card__title">Canal seguro</h3>
+							<p class="feature-card__copy">
+								Atención diferenciada: adultos reciben mentoring y menores solo
+								pueden contactar mediante su tutor.
+							</p>
+							<div class="feature-card__actions">
+								<a class="btn btn--outline" href="page/soporte/atencion.html">Contactar soporte</a>
+							</div>
+						</article>
+					</div>
+				</section>
+
+				<section class="section supporting">
+					<div class="supporting__grid">
+						<article class="supporting-card">
+							<h3 class="supporting-card__title">Guía de estilos</h3>
+							<ul class="supporting-card__list">
+								<li>Paleta y tipografías alineadas al manual Klesis.</li>
+								<li>Componentes reutilizables para ambas experiencias.</li>
+								<li>Layout responsive optimizado para familias y mentores.</li>
+							</ul>
+						</article>
+						<article class="supporting-card">
+							<h3 class="supporting-card__title">Seguridad</h3>
+							<ul class="supporting-card__list">
+								<li>Validación de edad desde el registro.</li>
+								<li>Sesiones cifradas y persistencia local controlada.</li>
+								<li>Gating automático cuando se intenta acceder a otra sección.</li>
+							</ul>
+						</article>
+						<article class="supporting-card">
+							<h3 class="supporting-card__title">Acompañamiento</h3>
+							<ul class="supporting-card__list">
+								<li>Soporte 100% mediado por tutores para menores.</li>
+								<li>Mentorías y foros solo para adultos validados.</li>
+								<li>Contenidos contextualizados con storytelling del PDF.</li>
+							</ul>
+						</article>
+					</div>
+				</section>
+			</div>
+
+			<div class="segment-view hidden" data-segment-view="adult">
+				<section class="hero hero--adult">
+					<div>
+						<span class="hero__badge hero__badge--adult">Modo adulto</span>
+						<h1 class="hero__title">Construye tu plan profesional con datos reales.</h1>
+						<p class="hero__subtitle">
+							Explora evaluaciones serias, reportes accionables y foros exclusivos
+							para mayores de edad. Aquí no encontrarás dinámicas lúdicas.
+						</p>
+						<div class="hero__actions">
+							<a class="btn btn--primary" href="page/tarea/vocacional.html">Ver evaluación profesional</a>
+							<a class="btn btn--outline" href="page/soporte/atencion.html">Solicitar mentoría</a>
+						</div>
+						<div class="hero__stats" aria-label="Resultados destacados">
+							<article class="hero__stat-card">
+								<div class="hero__stat-value">1520</div>
+								<p>Planes profesionales completados.</p>
+							</article>
+							<article class="hero__stat-card">
+								<div class="hero__stat-value">87%</div>
+								<p>Reportan claridad en su próximo paso laboral.</p>
+							</article>
+							<article class="hero__stat-card">
+								<div class="hero__stat-value">920</div>
+								<p>Networking seguro entre profesionales.</p>
+							</article>
+						</div>
+					</div>
+					<aside class="hero__card" aria-label="Lo que encontrarás">
+						<h2 class="feature-card__title">Diagnóstico profundo</h2>
+						<p>
+							Comparte evidencias, establece metas y conecta con expertos por
+							sesiones. Solo herramientas profesionales.
+						</p>
+						<ul class="supporting-card__list">
+							<li>Informe de perfil con PDF descargable.</li>
+							<li>Tableros de seguimiento mensual.</li>
+							<li>Foros moderados entre adultos.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="section">
+					<header class="section__header">
+						<span class="section__eyebrow">Herramientas clave</span>
+						<h2 class="section__title">Todo para proyectar tu carrera</h2>
+						<p class="section__lead">
+							Genera planes, revisa métricas y colabora con mentores certificados.
+						</p>
+						<p class="section__lead" style="font-size: 1rem; color: rgba(15, 23, 42, 0.78)">
+							Integra resultados cuantitativos, hallazgos de mercado y compromisos con tu red profesional desde un único panel para tomar decisiones estratégicas.
+						</p>
+					</header>
+					<div class="feature-grid">
+						<article class="feature-card">
+							<div class="feature-card__icon feature-card__icon--adult" aria-hidden="true">🗂️</div>
+							<h3 class="feature-card__title">Portafolio profesional</h3>
+							<p class="feature-card__copy">Consolida evidencias, certificaciones y logros en un solo lugar.</p>
+						</article>
+						<article class="feature-card">
+							<div class="feature-card__icon feature-card__icon--adult" aria-hidden="true">📊</div>
+							<h3 class="feature-card__title">Evaluación avanzada</h3>
+							<p class="feature-card__copy">Recibe reportes cuantitativos con recomendaciones accionables.</p>
+						</article>
+						<article class="feature-card">
+							<div class="feature-card__icon feature-card__icon--community" aria-hidden="true">🤝</div>
+							<h3 class="feature-card__title">Mentoría entre pares</h3>
+							<p class="feature-card__copy">Accede a sesiones grupales y foros moderados exclusivos para adultos.</p>
+						</article>
+					</div>
+				</section>
+
+				<section class="section supporting">
+					<div class="supporting__grid">
+						<article class="supporting-card">
+							<h3 class="supporting-card__title">Lo que cuidamos</h3>
+							<ul class="supporting-card__list">
+								<li>Validación de identidad y correo institucional.</li>
+								<li>Historial de progreso descargable.</li>
+								<li>Sin acceso a contenidos lúdicos.</li>
+							</ul>
+						</article>
+						<article class="supporting-card">
+							<h3 class="supporting-card__title">Siguiente paso</h3>
+							<ul class="supporting-card__list">
+								<li>Programa una mentoría con expertos sectoriales.</li>
+								<li>Recibe plantillas para priorizar vacantes.</li>
+								<li>Comparte tu informe con aliados educativos.</li>
+							</ul>
+						</article>
+						<article class="supporting-card">
+							<h3 class="supporting-card__title">Recursos rápidos</h3>
+							<ul class="supporting-card__list">
+								<li>Biblioteca de guías sectoriales.</li>
+								<li>Calendario de eventos profesionales.</li>
+								<li>Conecta con foros especializados.</li>
+							</ul>
+						</article>
+					</div>
+				</section>
+			</div>
+
+			<div class="segment-view hidden" data-segment-view="minor">
+				<section class="hero hero--playful">
+					<div>
+						<span class="hero__badge hero__badge--minor">Modo aventura</span>
+						<h1 class="hero__title">Descubre tus talentos con misiones guiadas.</h1>
+						<p class="hero__subtitle">
+							Historias interactivas, quizzes ilustrados y un espacio seguro para
+							que compartas avances solo con tu tutor o familia.
+						</p>
+						<div class="hero__actions">
+							<a class="btn btn--minor" href="page/tarea/otros-test.html">Entrar a misiones</a>
+							<a class="btn btn--outline" href="page/soporte/atencion.html">Pedir ayuda al tutor</a>
+						</div>
+						<div class="hero__stats" aria-label="Misiones completadas">
+							<article class="hero__stat-card card--playful">
+								<div class="hero__stat-value">45</div>
+								<p>Misiones interactivas disponibles.</p>
+							</article>
+							<article class="hero__stat-card card--playful">
+								<div class="hero__stat-value">12</div>
+								<p>Historias con personajes mentores.</p>
+							</article>
+							<article class="hero__stat-card card--playful">
+								<div class="hero__stat-value">+200</div>
+								<p>Recompensas digitales para coleccionar.</p>
+							</article>
+						</div>
+					</div>
+					<aside class="hero__card card--playful" aria-label="Lo que vivirás">
+						<h2 class="feature-card__title">Una aventura segura</h2>
+						<p>
+							Avanza a tu ritmo, desbloquea logros y comparte con tu tutor a
+							través del centro familiar. No hay foros abiertos.
+						</p>
+						<ul class="supporting-card__list">
+							<li>Personajes guías amigables.</li>
+							<li>Feedback inmediato y positivo.</li>
+							<li>Panel de tutor para revisar progresos.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="section">
+					<header class="section__header">
+						<span class="section__eyebrow">Misiones destacadas</span>
+						<h2 class="section__title">Todo gamificado para que explores profesiones</h2>
+						<p class="section__lead">
+							Actividades cortas, visuales y acompañadas. El tutor recibe un
+							reporte resumido al final de cada misión.
+						</p>
+						<p class="section__lead" style="font-size: 1rem; color: rgba(15, 23, 42, 0.75)">
+							Cada reto suma puntos, desbloquea badges y alimenta tu radar de intereses para que sepas qué historias probar a continuación.
+						</p>
+					</header>
+					<div class="feature-grid">
+						<article class="feature-card card--playful">
+							<div class="feature-card__icon feature-card__icon--minor" aria-hidden="true">🚀</div>
+							<h3 class="feature-card__title">Misiones temáticas</h3>
+							<p class="feature-card__copy">Explora profesiones mediante aventuras interactivas y escenarios animados.</p>
+						</article>
+						<article class="feature-card card--playful">
+							<div class="feature-card__icon feature-card__icon--minor" aria-hidden="true">🎨</div>
+							<h3 class="feature-card__title">Retos creativos</h3>
+							<p class="feature-card__copy">Sumar puntos creando historias, mapas mentales o prototipos sencillos.</p>
+						</article>
+						<article class="feature-card card--playful">
+							<div class="feature-card__icon feature-card__icon--minor" aria-hidden="true">🛡️</div>
+							<h3 class="feature-card__title">Centro familiar</h3>
+							<p class="feature-card__copy">Tu tutor recibe reportes y controla quién puede ver tus avances.</p>
+						</article>
+					</div>
+				</section>
+
+				<section class="section supporting">
+					<div class="supporting__grid">
+						<article class="supporting-card">
+							<h3 class="supporting-card__title">Te acompañamos así</h3>
+							<ul class="supporting-card__list">
+								<li>Tono cercano y narrativo en cada pantalla.</li>
+								<li>Explicaciones sencillas y visuales.</li>
+								<li>Guías rápidas para compartir con tu tutor.</li>
+							</ul>
+						</article>
+						<article class="supporting-card">
+							<h3 class="supporting-card__title">Seguridad para ti</h3>
+							<ul class="supporting-card__list">
+								<li>Sin foros ni chat con adultos.</li>
+								<li>Contenido moderado y lenguaje amigable.</li>
+								<li>Tu tutor aprueba cualquier conexión externa.</li>
+							</ul>
+						</article>
+						<article class="supporting-card">
+							<h3 class="supporting-card__title">Próximos lanzamientos</h3>
+							<ul class="supporting-card__list">
+								<li>Misiones colaborativas con tus amigos.</li>
+								<li>Podcast animado con historias reales.</li>
+								<li>Sticker book digital para celebrar logros.</li>
+							</ul>
+						</article>
+					</div>
+				</section>
+			</div>
+		</main>
+
+		<footer>
+			<div class="footer__grid">
+				<div>
+					<div class="footer__brand">Klesis</div>
+					<p>Construimos rutas vocacionales seguras para cada etapa.</p>
+				</div>
+				<div class="footer__column">
+					<div class="footer__title">Plataforma</div>
+					<ul class="footer__list">
+						<li><a href="page/auth/segment.html">Crear cuenta</a></li>
+						<li><a href="page/auth/login_mayordeedad.html">Ingresar adulto</a></li>
+						<li><a href="page/auth/login_menor.html">Ingresar menor</a></li>
+					</ul>
+				</div>
+				<div class="footer__column">
+					<div class="footer__title">Comunidad</div>
+					<ul class="footer__list">
+						<li><a href="page/foro.html">Foro (adultos)</a></li>
+						<li><a href="page/tarea/otros-test.html">Misiones</a></li>
+						<li><a href="page/soporte/atencion.html">Atención al cliente</a></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

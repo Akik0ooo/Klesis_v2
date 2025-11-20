@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Iniciar sesión | Klesis</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <script defer src="../../js/storage.js"></script>
+    <script defer src="../../js/auth.js"></script>
+  </head>
+  <body>
+    <main class="layout-auth">
+      <a href="../../index.html" class="nav__brand" style="margin-bottom: 1.5rem">
+        <span class="nav__brand-badge" aria-hidden="true">K</span>
+        Klesis
+      </a>
+      <section class="card card--split">
+        <div>
+          <div class="badge badge--adult">Ingreso</div>
+          <h1>Bienvenido de nuevo</h1>
+          <p class="form__helper">
+            Accede a tu dashboard, retoma el test vocacional desde donde lo
+            dejaste y continúa la conversación en el foro.
+          </p>
+          <div class="supporting-card__list">
+            <div>✔️ Sesión persistente para que mantengas tu progreso.</div>
+            <div>✔️ Diferenciamos experiencias de mayor y menor de edad.</div>
+            <div>✔️ Sigue perfiles CM-4 y recibe notificaciones clave.</div>
+          </div>
+        </div>
+        <form class="form" id="loginForm" novalidate>
+          <div class="form__field">
+            <label class="form__label" for="loginEmail">Correo electrónico</label>
+            <input class="form__input" type="email" id="loginEmail" name="email" required autocomplete="email" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="loginPassword">Contraseña</label>
+            <input class="form__input" type="password" id="loginPassword" name="password" required autocomplete="current-password" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="rememberSession">
+              <input type="checkbox" id="rememberSession" name="remember" /> Mantener sesión iniciada
+            </label>
+          </div>
+          <div id="loginErrors" class="form__error" aria-live="polite"></div>
+          <button class="btn btn--primary" type="submit">Ingresar</button>
+          <p class="form__helper">
+            ¿No tienes cuenta? <a href="segment.html">Regístrate</a> y vive la experiencia completa.
+          </p>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

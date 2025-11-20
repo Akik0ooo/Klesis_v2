@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crear cuenta (Menor de edad) | Klesis</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <script defer src="../../js/storage.js"></script>
+    <script defer src="../../js/auth.js"></script>
+  </head>
+  <body data-base-path="../../">
+    <main class="layout-auth">
+      <a href="../../index.html" class="nav__brand" style="margin-bottom: 1.5rem">
+        <span class="nav__brand-badge" aria-hidden="true">K</span>
+        Klesis
+      </a>
+      <section class="card card--playful">
+        <div class="playful-banner">
+          <span class="playful-emoji" aria-hidden="true">✨</span>
+          <div>
+            <div class="badge badge--minor">Modo menor</div>
+            <h1 class="playful-title">Crea tu perfil aventurero</h1>
+            <p class="playful-copy">
+              Diseñamos experiencias seguras para ti y tu familia. Usa un nickname creativo y elige tus intereses para desbloquear misiones personalizadas.
+            </p>
+          </div>
+        </div>
+        <form class="form" id="registerMinorForm" novalidate>
+          <div class="account-switch">
+            <p class="form__helper" style="margin: 0">¿Tu cuenta es de menor o mayor?</p>
+            <div class="account-switch__actions">
+              <span class="btn btn--minor" aria-current="true">Registrar menor</span>
+              <a class="btn btn--outline" href="register_mayordeedad.html">Registrar mayor</a>
+            </div>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="minorNickname">Nickname</label>
+            <input class="form__input" type="text" id="minorNickname" name="nickname" required autocomplete="username" placeholder="Ej. ExploradorEstelar" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="minorConfirmNickname">Repite tu nickname</label>
+            <input class="form__input" type="text" id="minorConfirmNickname" name="confirmNickname" required autocomplete="username" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="minorPassword">Contraseña</label>
+            <input class="form__input" type="password" id="minorPassword" name="password" required minlength="8" autocomplete="new-password" aria-describedby="minorPasswordRules" />
+            <p class="form__helper" id="minorPasswordRules">Mínimo 8 caracteres. Puedes combinar letras, números y símbolos divertidos.</p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="minorAge">Edad</label>
+            <input class="form__input" type="number" id="minorAge" name="age" required min="8" max="17" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="minorInterests">Intereses principales</label>
+            <select id="minorInterests" name="interests" class="form__input" multiple size="4">
+              <option value="arte">Arte y creatividad</option>
+              <option value="tecnologia">Tecnología y videojuegos</option>
+              <option value="naturaleza">Naturaleza y ciencia</option>
+              <option value="deportes">Deportes y movimiento</option>
+              <option value="ayudar">Ayudar a los demás</option>
+            </select>
+            <p class="form__helper">Selecciona una o varias opciones.</p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="minorCustomInterest">Otro interés (opcional)</label>
+            <input class="form__input" type="text" id="minorCustomInterest" name="customInterest" placeholder="Escribe otro interés" />
+          </div>
+          <div class="form__error" data-error aria-live="polite"></div>
+          <button class="btn btn--minor" type="submit">Crear mi cuenta</button>
+          <p class="form__helper">
+            ¿Ya tienes una cuenta? <a href="login_menor.html">Inicia sesión como menor</a> o <a href="login_mayordeedad.html">cambia a modo mayor</a>.
+          </p>
+          <div class="playful-support">
+            <span aria-hidden="true">🛟</span>
+            <a href="../soporte/atencion.html">Pide ayuda a soporte o a tu tutor si necesitas asistencia.</a>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

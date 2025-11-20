@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Atención al cliente | Klesis</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <script defer src="../../js/storage.js"></script>
+    <script defer src="../../js/main.js"></script>
+  </head>
+  <body data-base-path="../../">
+    <header>
+      <nav class="nav" aria-label="Principal">
+        <a class="nav__brand" href="../../index.html">
+          <span class="nav__brand-badge" aria-hidden="true">K</span>
+          Klesis
+        </a>
+        <div class="nav__links" role="list">
+          <a href="../auth/segment.html">Autenticación</a>
+          <a href="../tarea/vocacional.html">Plan profesional</a>
+          <a aria-current="page" href="atencion.html">Atención</a>
+        </div>
+        <div class="nav__actions">
+          <div class="nav__dropdown" data-dropdown>
+            <button
+              class="btn btn--outline nav__dropdown-toggle"
+              type="button"
+              data-dropdown-toggle
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="navExploreMenu"
+            >
+              Explorar
+              <span class="nav__dropdown-icon" aria-hidden="true">▾</span>
+            </button>
+            <div class="nav__dropdown-menu hidden" id="navExploreMenu" role="menu" data-dropdown-menu>
+              <a role="menuitem" href="../tarea/vocacional.html">Plan profesional</a>
+              <a role="menuitem" href="../tarea/otros-test.html">Misiones</a>
+              <a role="menuitem" href="../foro.html">Foro (adultos)</a>
+              <a role="menuitem" href="atencion.html">Atención</a>
+            </div>
+          </div>
+          <a class="btn btn--primary" href="../auth/segment.html">Crear cuenta</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="layout-page" style="max-width: 920px">
+      <section class="section__header" style="text-align: left; margin-bottom: 3rem">
+        <span class="section__eyebrow">Soporte Klesis</span>
+        <h1 class="section__title">Estamos para ayudarte</h1>
+        <p class="section__lead">
+          Escríbenos para resolver dudas sobre registros, acceso al test vocacional o acompañamiento familiar. Nuestro equipo responde en menos de 24 horas.
+        </p>
+      </section>
+
+      <section class="card" style="margin-bottom: 2rem">
+        <h2 class="feature-card__title">Canales oficiales</h2>
+        <div class="supporting-card__list">
+          <div><strong>Correo:</strong> soporte@klesis.app</div>
+          <div><strong>WhatsApp:</strong> +51 900 000 000</div>
+          <div><strong>Horario:</strong> Lunes a viernes, 9:00 a 18:00 (GMT-5)</div>
+        </div>
+      </section>
+
+      <section class="card card--split">
+        <div>
+          <h2 class="feature-card__title">Envíanos un mensaje</h2>
+          <p class="form__helper" data-support-copy>
+            Selecciona el segmento para adaptar el formulario. Los menores de edad solo pueden contactarnos mediante su tutor registrado.
+          </p>
+        </div>
+        <form class="form" id="supportForm">
+          <div class="form__field">
+            <label class="form__label" for="supportName">Nombre de quien escribe</label>
+            <input class="form__input" type="text" id="supportName" name="name" required />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="supportSegment">Segmento</label>
+            <select id="supportSegment" name="segment" class="form__input" required>
+              <option value="">Selecciona</option>
+              <option value="adult">Mayor de edad</option>
+              <option value="minor">Menor de edad</option>
+            </select>
+          </div>
+          <div class="form__field" data-support-role="adult-email">
+            <label class="form__label" for="supportEmail">Correo de contacto</label>
+            <input class="form__input" type="email" id="supportEmail" name="adultEmail" data-support-input />
+          </div>
+          <div class="form__field hidden" data-support-role="guardian-name">
+            <label class="form__label" for="supportGuardianName">Nombre del tutor responsable</label>
+            <input class="form__input" type="text" id="supportGuardianName" name="guardianName" data-support-input />
+          </div>
+          <div class="form__field hidden" data-support-role="guardian-email">
+            <label class="form__label" for="supportGuardianEmail">Correo del tutor</label>
+            <input class="form__input" type="email" id="supportGuardianEmail" name="guardianEmail" data-support-input />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="supportMessage">Mensaje</label>
+            <textarea class="form__input" id="supportMessage" name="message" rows="5" required></textarea>
+          </div>
+          <button class="btn btn--primary" type="submit">Enviar</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Klesis</div>
+          <p>Construimos rutas vocacionales seguras para cada etapa.</p>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Plataforma</div>
+          <ul class="footer__list">
+            <li><a href="../auth/segment.html">Crear cuenta</a></li>
+            <li><a href="../auth/login_mayordeedad.html">Ingresar adulto</a></li>
+            <li><a href="../auth/login_menor.html">Ingresar menor</a></li>
+          </ul>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Recursos</div>
+          <ul class="footer__list">
+            <li><a href="../tarea/vocacional.html">Plan profesional</a></li>
+            <li><a href="../tarea/otros-test.html">Misiones</a></li>
+            <li><a href="atencion.html">Atención al cliente</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
