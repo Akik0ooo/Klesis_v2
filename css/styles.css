@@ -6,6 +6,7 @@
 	--radius-sm: 0.5rem;
 	--radius-md: 1rem;
 	--radius-lg: 2rem;
+	--radius-card: 1.5rem;
 	--shadow-sm: 0 8px 22px rgba(15, 23, 42, 0.1);
 	--shadow-md: 0 18px 48px rgba(15, 23, 42, 0.12);
 	--color-bg: #f4f6fb;
@@ -317,7 +318,7 @@ header {
 
 .hero__stat-card {
 	background-color: var(--color-surface);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-card);
 	padding: 1.25rem;
 	box-shadow: var(--shadow-sm);
 }
@@ -335,6 +336,11 @@ header {
 	max-width: 680px;
 	margin: 0 auto 3rem;
 	text-align: center;
+	background-color: var(--color-surface);
+	border: 1px solid rgba(148, 163, 184, 0.16);
+	border-radius: var(--radius-card);
+	padding: 2.5rem 2rem;
+	box-shadow: var(--shadow-sm);
 }
 
 .section__eyebrow {
@@ -365,7 +371,7 @@ header {
 
 .feature-card {
 	background-color: var(--color-surface);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-card);
 	padding: 2rem;
 	border: 1px solid rgba(148, 163, 184, 0.16);
 	box-shadow: var(--shadow-sm);
@@ -442,7 +448,7 @@ header {
 
 .supporting-card {
 	background-color: var(--color-surface);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-card);
 	padding: 2rem;
 	border: 1px solid rgba(148, 163, 184, 0.12);
 }
@@ -509,7 +515,7 @@ footer {
 
 .card {
 	background-color: var(--color-surface);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-card);
 	box-shadow: var(--shadow-sm);
 	border: 1px solid rgba(208, 213, 221, 0.6);
 	padding: 2.5rem;
@@ -1429,7 +1435,7 @@ textarea:focus {
 
 .profile-empty {
 	background-color: rgba(15, 23, 42, 0.04);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-card);
 	padding: 1.25rem;
 	color: rgba(15, 23, 42, 0.65);
 	font-weight: 500;
@@ -1453,7 +1459,7 @@ textarea:focus {
 
 .profile-comparison-card {
 	border: 1px solid rgba(148, 163, 184, 0.2);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-card);
 	padding: 1rem 1.25rem;
 	display: grid;
 	gap: 0.4rem;
@@ -1470,7 +1476,7 @@ textarea:focus {
 	align-items: center;
 	justify-content: space-between;
 	border: 1px solid rgba(148, 163, 184, 0.25);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-card);
 	padding: 0.75rem 1rem;
 	background-color: var(--color-surface);
 }
@@ -1896,7 +1902,7 @@ textarea:focus {
 
 .question-card {
 	background-color: var(--color-surface);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-card);
 	padding: 2rem;
 	box-shadow: var(--shadow-sm);
 	display: grid;
@@ -1962,7 +1968,7 @@ textarea:focus {
 	display: grid;
 	gap: 1.5rem;
 	background-color: var(--color-surface);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-card);
 	padding: 2rem;
 	box-shadow: var(--shadow-sm);
 }
@@ -2187,7 +2193,7 @@ textarea:focus {
 .dashboard-card {
 	background-color: var(--color-surface);
 	border: 1px solid rgba(148, 163, 184, 0.18);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-card);
 	padding: 1.8rem;
 	box-shadow: var(--shadow-sm);
 }
@@ -2245,7 +2251,7 @@ textarea:focus {
 
 .forum-thread {
 	border: 1px solid rgba(148, 163, 184, 0.18);
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-card);
 	padding: 1.4rem;
 	background-color: var(--color-surface);
 	display: grid;
