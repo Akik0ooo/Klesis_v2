@@ -348,6 +348,7 @@
   ];
 
   const UNIVERSITIES = buildUniversities();
+  const AREA_REGISTRY = buildAreaRegistry();
   const CATALOG = buildCatalog();
 
   function buildCatalog() {
@@ -374,7 +375,7 @@
             ])
           );
 
-          entries.push({
+          const entry = {
             id,
             name: `${base.name} · ${program.short}`,
             emoji: base.emoji,
@@ -390,7 +391,10 @@
             programLabel: program.label,
             regionKey: region.key,
             regionLabel: region.label
-          });
+          };
+
+          entry._search = buildSearchIndex(entry, base);
+          entries.push(entry);
         });
       });
     });
@@ -628,6 +632,22 @@
     ];
   }
 
+  function buildAreaRegistry() {
+    const registry = new Map();
+    BASE_CAREERS.forEach((career) => {
+      career.compatibilityTags.forEach((tag) => {
+        const slug = slugify(tag);
+        if (!slug) {
+          return;
+        }
+        const current = registry.get(slug) || { slug, label: tag, count: 0 };
+        current.count += 1;
+        registry.set(slug, current);
+      });
+    });
+    return registry;
+  }
+
   function university(name, country, region, cost) {
     return { name, country, region, cost };
   }
@@ -643,6 +663,12 @@
       .toLowerCase();
   }
 
+  function slugify(value) {
+    return normalize(value)
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
   function getCatalog() {
     return CATALOG.slice();
   }
@@ -651,34 +677,56 @@
     return CATALOG.find((item) => item.id === id);
   }
 
-  function filterCatalog({ query = "", segment = "all", cost = "all", university = "all" } = {}) {
-    return CATALOG.filter((career) => {
+  function filterCatalog({ query = "", segment = "all", cost = "all", university = "all", area = "all" } = {}) {
+    const areaLabel = area !== "all" ? resolveAreaLabel(area) : null;
+    if (area !== "all" && !areaLabel) {
+      return [];
+    }
+
+    const normalizedQuery = normalize(query);
+    const trimmedQuery = normalizedQuery.trim();
+    const queryTerms = trimmedQuery.split(/\s+/).filter(Boolean);
+    const targetUniversity = university !== "all" ? normalize(university).trim() : null;
+
+    const results = [];
+
+    CATALOG.forEach((career) => {
       if (segment !== "all" && !career.compatibleSegments.includes(segment)) {
-        return false;
+        return;
       }
       if (cost !== "all" && career.estimatedCost !== cost) {
-        return false;
+        return;
       }
-      if (university !== "all") {
-        const normalizedUniversity = normalize(university);
-        const matchesUniversity = career.universities.some((item) => normalize(item.name).includes(normalizedUniversity));
+      if (targetUniversity) {
+        const matchesUniversity = career.universities.some((item) => normalize(item.name).includes(targetUniversity));
         if (!matchesUniversity) {
-          return false;
+          return;
         }
       }
-      if (query) {
-        const normalizedQuery = normalize(query);
-        const matchesName = normalize(career.name).includes(normalizedQuery);
-        const matchesSummary = normalize(career.summary).includes(normalizedQuery);
-        const matchesRegion = normalize(career.regionLabel).includes(normalizedQuery);
-        const matchesProgram = normalize(career.programLabel).includes(normalizedQuery);
-        const matchesTags = career.compatibilityTags.some((tag) => normalize(tag).includes(normalizedQuery));
-        if (!matchesName && !matchesSummary && !matchesTags && !matchesRegion && !matchesProgram) {
-          return false;
-        }
+      if (areaLabel && !career.compatibilityTags.includes(areaLabel)) {
+        return;
       }
-      return true;
+
+      if (!queryTerms.length) {
+        results.push({ career, score: 0 });
+        return;
+      }
+
+      const score = computeSearchScore(career._search, trimmedQuery, queryTerms);
+      if (score > 0) {
+        results.push({ career, score });
+      }
     });
+
+    if (!queryTerms.length) {
+      return results
+        .sort((a, b) => a.career.name.localeCompare(b.career.name, "es"))
+        .map((item) => item.career);
+    }
+
+    return results
+      .sort((a, b) => b.score - a.score || a.career.name.localeCompare(b.career.name, "es"))
+      .map((item) => item.career);
   }
 
   function getUniversityOptions() {
@@ -693,11 +741,151 @@
     return Array.from(registry.values()).sort((a, b) => a.name.localeCompare(b.name));
   }
 
+  function getAreaOptions() {
+    return Array.from(AREA_REGISTRY.values()).sort((a, b) => a.label.localeCompare(b.label, "es"));
+  }
+
+  function resolveAreaLabel(slug) {
+    return AREA_REGISTRY.get(slug)?.label || null;
+  }
+
+  function buildSearchIndex(entry, baseCareer) {
+    const baseFields = [
+      normalize(baseCareer?.name),
+      normalize(baseCareer?.summary),
+      normalize(baseCareer?.notes)
+    ];
+
+    const variantFields = [
+      normalize(entry.name),
+      normalize(entry.summary),
+      normalize(entry.programLabel),
+      normalize(entry.regionLabel),
+      normalize(entry.notes)
+    ];
+
+    const tagFields = entry.compatibilityTags.map((tag) => normalize(tag));
+    const focusFields = entry.focusAreas.map((area) => normalize(area.label));
+    const universityFields = entry.universities.map((item) => normalize(item.name));
+
+    const fields = [...baseFields, ...variantFields, ...tagFields, ...focusFields, ...universityFields].filter(Boolean);
+    const tokens = new Set();
+
+    fields.forEach((field) => {
+      tokenize(field).forEach((token) => tokens.add(token));
+    });
+
+    return {
+      fields,
+      tokens: Array.from(tokens),
+      blob: fields.join(" ")
+    };
+  }
+
+  function computeSearchScore(index, normalizedQuery, queryTerms) {
+    if (!index) {
+      return 0;
+    }
+
+    let score = 0;
+
+    if (normalizedQuery && index.blob.includes(normalizedQuery)) {
+      score += 80;
+    }
+
+    queryTerms.forEach((term) => {
+      let best = Number.NEGATIVE_INFINITY;
+
+      index.fields.forEach((field) => {
+        if (field.includes(term)) {
+          const bonus = Math.min(12, term.length * 2);
+          best = Math.max(best, 50 + bonus);
+        }
+      });
+
+      if (!Number.isFinite(best)) {
+        index.tokens.forEach((token) => {
+          const distance = levenshteinDistance(term, token);
+          if (distance <= getFuzzyTolerance(term)) {
+            const closeness = Math.max(0, Math.min(term.length, token.length) - distance);
+            const tokenScore = 40 + closeness * 4 - distance * 6;
+            best = Math.max(best, tokenScore);
+          }
+        });
+      }
+
+      if (!Number.isFinite(best)) {
+        score -= 30;
+      } else {
+        score += best;
+      }
+    });
+
+    return score;
+  }
+
+  function getFuzzyTolerance(term) {
+    if (term.length <= 3) {
+      return 1;
+    }
+    if (term.length <= 5) {
+      return 2;
+    }
+    if (term.length <= 8) {
+      return 3;
+    }
+    return 4;
+  }
+
+  function tokenize(value) {
+    return value.split(/[^a-z0-9]+/).filter(Boolean);
+  }
+
+  function levenshteinDistance(source, target) {
+    if (source === target) {
+      return 0;
+    }
+    if (!source.length) {
+      return target.length;
+    }
+    if (!target.length) {
+      return source.length;
+    }
+
+    const previous = new Array(target.length + 1);
+    const current = new Array(target.length + 1);
+
+    for (let j = 0; j <= target.length; j += 1) {
+      previous[j] = j;
+    }
+
+    for (let i = 1; i <= source.length; i += 1) {
+      current[0] = i;
+      const sourceCode = source.charCodeAt(i - 1);
+
+      for (let j = 1; j <= target.length; j += 1) {
+        const cost = sourceCode === target.charCodeAt(j - 1) ? 0 : 1;
+        current[j] = Math.min(
+          current[j - 1] + 1,
+          previous[j] + 1,
+          previous[j - 1] + cost
+        );
+      }
+
+      for (let j = 0; j <= target.length; j += 1) {
+        previous[j] = current[j];
+      }
+    }
+
+    return previous[target.length];
+  }
+
   window.CareersCatalog = {
     all: getCatalog,
     find: findCareer,
     filter: filterCatalog,
     universities: getUniversityOptions,
+    areas: getAreaOptions,
     size: () => CATALOG.length
   };
 })();

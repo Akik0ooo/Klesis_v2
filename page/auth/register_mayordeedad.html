@@ -60,6 +60,12 @@
             <label class="form__label" for="adultInterests">Áreas de interés (opcional)</label>
             <textarea class="form__input" id="adultInterests" name="interests" rows="3" placeholder="Tecnología, salud, educación..."></textarea>
           </div>
+          <div class="form__field">
+            <label class="form__label" for="adultRemember">
+              <input type="checkbox" id="adultRemember" name="remember" /> Mantener sesión iniciada en este dispositivo
+            </label>
+            <p class="form__helper">Desactiva esta opción si estás en un equipo compartido.</p>
+          </div>
           <div class="form__error" data-error aria-live="polite"></div>
           <button class="btn btn--primary" type="submit">Crear cuenta</button>
           <button class="btn btn--outline" type="button" data-google-signin>

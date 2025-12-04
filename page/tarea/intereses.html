@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Test de Intereses | Klesis</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+    <script defer src="../../js/storage.js"></script>
+    <script defer src="../../js/main.js"></script>
+    <script defer src="../../js/minor_quiz.js"></script>
+  </head>
+  <body data-base-path="../../" data-require-segment="minor" data-page="intereses">
+    <header>
+      <nav class="nav" aria-label="Principal">
+        <a class="nav__brand" href="../../index.html">
+          <span class="nav__brand-badge" aria-hidden="true">K</span>
+          Klesis
+        </a>
+        <div class="nav__links" role="list">
+          <a href="../auth/segment.html">Autenticación</a>
+          <a href="otros-test.html" aria-current="page">Quizzies</a>
+          <a href="../soporte/atencion.html">Zona segura</a>
+        </div>
+        <div class="nav__actions">
+          <div class="nav__dropdown" data-dropdown>
+            <button
+              class="btn btn--outline nav__dropdown-toggle"
+              type="button"
+              data-dropdown-toggle
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="navExploreMenu"
+            >
+              Explorar
+              <span class="nav__dropdown-icon" aria-hidden="true">▾</span>
+            </button>
+            <div class="nav__dropdown-menu hidden" id="navExploreMenu" role="menu" data-dropdown-menu>
+              <a role="menuitem" href="otros-test.html">Quizzies activos</a>
+              <a role="menuitem" href="../soporte/atencion.html">Contactar tutor</a>
+              <a role="menuitem" href="../auth/login_menor.html">Cambiar de cuenta</a>
+            </div>
+          </div>
+          <a class="btn btn--minor" href="../auth/register_menor.html">Invitar a un amigo</a>
+        </div>
+      </nav>
+    </header>
+
+      <div class="page-search">
+        <form class="page-search__form" data-global-search>
+          <label class="sr-only" for="interestsSearchInput">Buscar en Klesis</label>
+          <input
+            class="page-search__input"
+            type="search"
+            id="interestsSearchInput"
+            name="q"
+            placeholder="Busca carreras, misiones o soporte"
+            autocomplete="off"
+          />
+          <button class="btn btn--primary page-search__button" type="submit">Buscar</button>
+        </form>
+        <div class="page-search__results hidden" data-global-search-results aria-live="polite"></div>
+      </div>
+
+    <main class="layout-page" style="max-width: 940px">
+      <section class="hero hero--playful hero--intereses" style="margin-bottom: 2.5rem">
+        <div>
+          <span class="hero__badge hero__badge--minor">Test destacado</span>
+          <h1 class="hero__title">Descubre tu superpoder vocacional</h1>
+          <p class="hero__subtitle">
+            Vive una aventura en tres etapas: bienvenida, preguntas y un panel de resultados con tu perfil de intereses en tiempo real.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--minor" href="#intereses-test">Comenzar ahora</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="interests-benefits" aria-label="Lo que obtienes">
+        <h2 class="interests-benefits__title">Lo que obtienes</h2>
+        <ul class="hero__card-list">
+          <li>
+            <span class="hero__card-icon" aria-hidden="true">📊</span>
+            Resultados visuales listos para compartir con tu tutor.
+          </li>
+          <li>
+            <span class="hero__card-icon" aria-hidden="true">🧭</span>
+            Recomendaciones según tus talentos principales.
+          </li>
+          <li>
+            <span class="hero__card-icon" aria-hidden="true">☁️</span>
+            Guardamos tu progreso si iniciaste sesión.
+          </li>
+        </ul>
+      </section>
+
+      <section id="intereses-test" class="section section--intereses-intro" style="padding-top: 0">
+        <header class="interests-intro">
+          <h2 class="interests-intro__title">Tu radar de intereses en 5 preguntas</h2>
+          <p class="interests-intro__lead">
+            Conoce en minutos si tu energía vibra con la creatividad, la ciencia, la ayuda social o el liderazgo.
+          </p>
+          <p class="interests-intro__lead">
+            Al finalizar verás un radar interactivo y sugerencias de carreras para explorar. Puedes guardar el resultado o repetirlo cuando quieras.
+          </p>
+        </header>
+        <div class="quiz-app card quiz-app--simple" data-quiz-app>
+          <header class="quiz-app__header">
+            <div>
+              <h3 class="quiz-app__title">✨ Test de Intereses</h3>
+              <p class="quiz-app__subtitle">
+                Responde cinco preguntas rápidas para saber si tu superpoder es la creatividad, la ayuda social, la ciencia o el liderazgo.
+              </p>
+            </div>
+            <div class="quiz-app__meta">
+              <span class="badge badge--minor">Ideal 13-17 años</span>
+              <span class="badge badge--ghost">Duración 5 minutos</span>
+            </div>
+          </header>
+
+          <div class="quiz-app__step" data-quiz-step="welcome">
+            <div class="quiz-app__welcome">
+              <p>
+                ¡Hola! Este test te ayuda a descubrir qué área vibra contigo. Al terminar verás tu radar de intereses y podrás compartirlo con tu tutor.
+              </p>
+              <button class="btn btn--minor quiz-app__primary" type="button" data-quiz-start>
+                Comenzar 🚀
+              </button>
+            </div>
+          </div>
+
+          <div class="quiz-app__step hidden" data-quiz-step="quiz">
+            <div class="quiz-app__progress" aria-live="polite">
+              <span>Pregunta <strong data-quiz-index>1</strong> de <strong data-quiz-total>5</strong></span>
+              <div class="quiz-app__progress-bar">
+                <div class="quiz-app__progress-meter" data-quiz-progress style="width: 0%"></div>
+              </div>
+            </div>
+            <h4 class="quiz-app__question" data-quiz-question>Pregunta aquí</h4>
+            <div class="quiz-app__options" data-quiz-options></div>
+          </div>
+
+          <div class="quiz-app__step hidden" data-quiz-step="results">
+            <h4 class="quiz-app__question">¡Tu perfil de intereses es único! 🌟</h4>
+            <div class="quiz-app__results">
+              <div class="quiz-app__chart">
+                <canvas data-quiz-chart aria-label="Radar de intereses" role="img"></canvas>
+              </div>
+              <div class="quiz-app__summary">
+                <p class="quiz-app__power" data-quiz-result-title>Tu superpoder</p>
+                <p class="quiz-app__recommendation" data-quiz-recommendation></p>
+              </div>
+            </div>
+            <div class="quiz-app__actions">
+              <button class="btn btn--primary" type="button" data-quiz-save>Guardar en mi perfil</button>
+              <button class="btn btn--minor" type="button" data-quiz-repeat>Repetir test 🔄</button>
+              <a class="btn btn--outline" href="../soporte/atencion.html">Compartir con mi tutor</a>
+            </div>
+            <p class="quiz-app__status" data-quiz-save-feedback aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Klesis</div>
+          <p>Construimos rutas vocacionales seguras para cada etapa.</p>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Plataforma</div>
+          <ul class="footer__list">
+            <li><a href="../auth/segment.html">Crear cuenta</a></li>
+            <li><a href="../auth/login_menor.html">Ingresar menor</a></li>
+          </ul>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Recursos</div>
+          <ul class="footer__list">
+            <li><a href="otros-test.html">Quizzies</a></li>
+            <li><a href="../soporte/atencion.html">Zona segura</a></li>
+            <li><a href="../auth/login_menor.html">Cambiar de cuenta</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

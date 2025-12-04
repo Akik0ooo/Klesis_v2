@@ -1,44 +1,44 @@
-(function () {
+﻿(function () {
   const RECOMMENDATION_MAP = {
     Creatividad: {
-      title: "¡Poder creativo!",
-      careers: ["Diseño gráfico", "Arquitectura", "Animación digital", "Producción multimedia"],
+      title: "┬íPoder creativo!",
+      careers: ["Dise├▒o gr├ífico", "Arquitectura", "Animaci├│n digital", "Producci├│n multimedia"],
       copy: "Tu perfil resalta habilidades expresivas y la capacidad de imaginar soluciones. Explora proyectos que te permitan materializar ideas." 
     },
     Social: {
-      title: "¡Poder de conexión!",
-      careers: ["Psicología", "Docencia", "Trabajo social", "Medicina"],
-      copy: "Te energiza trabajar con personas y generar impacto positivo. Busca espacios de acompañamiento, liderazgo comunitario o bienestar." 
+      title: "┬íPoder de conexi├│n!",
+      careers: ["Psicolog├¡a", "Docencia", "Trabajo social", "Medicina"],
+      copy: "Te energiza trabajar con personas y generar impacto positivo. Busca espacios de acompa├▒amiento, liderazgo comunitario o bienestar." 
     },
     Ciencia: {
-      title: "¡Poder de ingenio!",
-      careers: ["Ingeniería", "Desarrollo de software", "Biotecnología", "Matemáticas aplicadas"],
-      copy: "Disfrutas comprender cómo funcionan las cosas y mejorar procesos. Los entornos STEM pueden impulsarte al siguiente nivel." 
+      title: "┬íPoder de ingenio!",
+      careers: ["Ingenier├¡a", "Desarrollo de software", "Biotecnolog├¡a", "Matem├íticas aplicadas"],
+      copy: "Disfrutas comprender c├│mo funcionan las cosas y mejorar procesos. Los entornos STEM pueden impulsarte al siguiente nivel." 
     },
     Liderazgo: {
-      title: "¡Poder de estrategia!",
-      careers: ["Administración", "Gestión de proyectos", "Emprendimiento", "Políticas públicas"],
-      copy: "Tienes visión para coordinar equipos y tomar decisiones. Canales como la dirección de proyectos o el emprendimiento se ajustan a tu perfil." 
+      title: "┬íPoder de estrategia!",
+      careers: ["Administraci├│n", "Gesti├│n de proyectos", "Emprendimiento", "Pol├¡ticas p├║blicas"],
+      copy: "Tienes visi├│n para coordinar equipos y tomar decisiones. Canales como la direcci├│n de proyectos o el emprendimiento se ajustan a tu perfil." 
     },
     Visual: {
       title: "Estilo visual destacado",
-      careers: ["UX/UI", "Marketing digital", "Arquitectura", "Ilustración"],
-      copy: "Procesas información mejor con estímulos visuales. Utiliza diagramas, mapas mentales y tableros para mantener el enfoque." 
+      careers: ["UX/UI", "Marketing digital", "Arquitectura", "Ilustraci├│n"],
+      copy: "Procesas informaci├│n mejor con est├¡mulos visuales. Utiliza diagramas, mapas mentales y tableros para mantener el enfoque." 
     },
     Auditivo: {
       title: "Estilo auditivo protagonista",
-      careers: ["Mentoría", "Docencia", "Comunicación", "Coaching"],
-      copy: "Aprendes escuchando, dialogando y relatando. Apóyate en podcasts, foros y actualizaciones por voz para reforzar tu aprendizaje." 
+      careers: ["Mentor├¡a", "Docencia", "Comunicaci├│n", "Coaching"],
+      copy: "Aprendes escuchando, dialogando y relatando. Ap├│yate en podcasts, foros y actualizaciones por voz para reforzar tu aprendizaje." 
     },
-    "Kinestésico": {
-      title: "Estilo kinestésico activo",
-      careers: ["Fisioterapia", "Ergonomía", "Diseño de experiencias", "Logística"],
-      copy: "Necesitas acción para consolidar conocimientos. Incorpora prototipos, simulaciones y rutinas prácticas en tu plan de carrera." 
+    "Kinest├®sico": {
+      title: "Estilo kinest├®sico activo",
+      careers: ["Fisioterapia", "Ergonom├¡a", "Dise├▒o de experiencias", "Log├¡stica"],
+      copy: "Necesitas acci├│n para consolidar conocimientos. Incorpora prototipos, simulaciones y rutinas pr├ícticas en tu plan de carrera." 
     },
-    "Lógico": {
-      title: "Estilo lógico estratégico",
-      careers: ["Consultoría", "Análisis de datos", "Product Management", "Planeación financiera"],
-      copy: "Tu mente busca estructuras y racionalidad. Diseña sistemas con métricas, hipótesis y tableros comparativos para tomar decisiones." 
+    "L├│gico": {
+      title: "Estilo l├│gico estrat├®gico",
+      careers: ["Consultor├¡a", "An├ílisis de datos", "Product Management", "Planeaci├│n financiera"],
+      copy: "Tu mente busca estructuras y racionalidad. Dise├▒a sistemas con m├®tricas, hip├│tesis y tableros comparativos para tomar decisiones." 
     }
   };
 
@@ -46,7 +46,7 @@
     const storage = window.KlesisStorage;
     const catalog = window.CareersCatalog;
     if (!storage) {
-      console.warn("KlesisStorage no está disponible en perfil.js");
+      console.warn("KlesisStorage no est├í disponible en perfil.js");
       return;
     }
 
@@ -57,7 +57,7 @@
 
     const persistedUser = storage.findUserById(activeUser.id);
     if (!persistedUser) {
-      console.warn("No encontramos la información completa del usuario activo");
+      console.warn("No encontramos la informaci├│n completa del usuario activo");
       return;
     }
 
@@ -74,6 +74,7 @@
     bindPasswordForm(state);
     bindFavorites(state);
     bindComparisons(state);
+    bindFollow(state);
     bindAccountClose(state);
     renderInterestProfile(state);
     bindCareerSearch(state);
@@ -88,6 +89,7 @@
     const badgeNode = document.querySelector("[data-profile-segment]");
     const roleNode = document.querySelector("[data-profile-role]");
     const idNode = document.querySelector("[data-profile-identifier]");
+    const followingNode = document.querySelector("[data-profile-following]");
     const updatedNode = document.querySelector("[data-profile-updated]");
 
     if (badgeNode) {
@@ -113,9 +115,14 @@
       idNode.textContent = identifier ? `Cuenta: ${identifier}` : "";
     }
 
+    if (followingNode) {
+      const count = Array.isArray(user.followingIds) ? user.followingIds.length : 0;
+      followingNode.textContent = count ? `Siguiendo a ${count} perfil${count === 1 ? "" : "es"}` : "A├║n no sigues a nadie";
+    }
+
     if (updatedNode) {
       const updatedAt = user.updatedAt || user.createdAt;
-      updatedNode.textContent = updatedAt ? `Última actualización: ${formatDate(updatedAt)}` : "";
+      updatedNode.textContent = updatedAt ? `├Ültima actualizaci├│n: ${formatDate(updatedAt)}` : "";
     }
 
     updateAvatarNode(avatarNode, user);
@@ -123,6 +130,7 @@
     populateIdentityForm(user);
     renderFavoriteCareers(state);
     renderComparisons(state);
+    renderFollowing(state);
     bindEditToggle(state);
   }
 
@@ -222,17 +230,17 @@
 
       const currentHash = await state.storage.hashPassword(currentPassword);
       if (currentHash !== state.user.passwordHash) {
-        setFeedback(feedbackNode, "La contraseña actual no coincide.", "error");
+        setFeedback(feedbackNode, "La contrase├▒a actual no coincide.", "error");
         return;
       }
 
       if (newPassword !== confirmPassword) {
-        setFeedback(feedbackNode, "La confirmación no coincide.", "error");
+        setFeedback(feedbackNode, "La confirmaci├│n no coincide.", "error");
         return;
       }
 
       if (!isStrongPassword(newPassword)) {
-        setFeedback(feedbackNode, "La contraseña debe tener al menos 8 caracteres, letras y números.", "error");
+        setFeedback(feedbackNode, "La contrase├▒a debe tener al menos 8 caracteres, letras y n├║meros.", "error");
         return;
       }
 
@@ -241,7 +249,7 @@
 
       persistUser(state);
       form.reset();
-      setFeedback(feedbackNode, "Contraseña actualizada.", "success");
+      setFeedback(feedbackNode, "Contrase├▒a actualizada.", "success");
     });
   }
 
@@ -332,7 +340,7 @@
       card.setAttribute("role", "listitem");
       card.innerHTML = `
         <button class="career-star" type="button" data-career-star="${career.id}" data-active="true" aria-pressed="true" aria-label="Quitar ${career.name}">
-          ⭐
+          Ô¡É
         </button>
         <div class="favorite-card__header">
           <span class="favorite-card__emoji">${career.emoji}</span>
@@ -366,7 +374,7 @@
         card.setAttribute("role", "listitem");
         card.innerHTML = `
           <div class="favorite-card__header">
-            <span class="favorite-card__emoji">📌</span>
+            <span class="favorite-card__emoji">­ƒôî</span>
             <div>
               <h3 class="favorite-card__title">${item}</h3>
               <p class="favorite-card__copy">Este elemento fue agregado manualmente. Usa el buscador para reemplazarlo por una carrera oficial.</p>
@@ -408,7 +416,7 @@
     const colors = [];
 
     careers.forEach((career) => {
-      const best = career.focusAreas?.[0] || { emoji: "⭐", value: 50, color: "#2563eb" };
+      const best = career.focusAreas?.[0] || { emoji: "Ô¡É", value: 50, color: "#2563eb" };
       labels.push(`${best.emoji} ${career.name}`);
       values.push(best.value);
       colors.push(best.color);
@@ -483,7 +491,7 @@
     const width = Math.min(Math.max(primary.value || 0, 0), 100);
     const gradient = `linear-gradient(135deg, ${primary.color}, ${shadeColor(primary.color, 18)})`;
     const tags = focus
-      .map((area) => `<li>${area.emoji || "⭐"} ${area.label}</li>`)
+      .map((area) => `<li>${area.emoji || "Ô¡É"} ${area.label}</li>`)
       .join("");
     return `
       <div class="favorite-card__meter" aria-hidden="true">
@@ -615,7 +623,7 @@
       resultsNode.innerHTML = "";
 
       if (!list.length) {
-        resultsNode.innerHTML = "<p>No encontramos carreras para tu búsqueda.</p>";
+        resultsNode.innerHTML = "<p>No encontramos carreras para tu b├║squeda.</p>";
         return;
       }
 
@@ -625,7 +633,7 @@
         const isFavorite = Array.isArray(state.user.favoriteCareers) && state.user.favoriteCareers.includes(career.id);
         card.innerHTML = `
           <button class="career-star" type="button" data-career-star="${career.id}" data-active="${isFavorite}" aria-pressed="${isFavorite}">
-            ${isFavorite ? "⭐" : "☆"}
+            ${isFavorite ? "Ô¡É" : "Ôÿå"}
           </button>
           <div class="favorite-card__header">
             <span class="favorite-card__emoji">${career.emoji}</span>
@@ -644,9 +652,9 @@
               .join("")}
           </ul>
           <div class="career-search__actions">
-            <button class="btn btn--outline" type="button" data-career-details="${career.id}">Ver más detalles</button>
+            <button class="btn btn--outline" type="button" data-career-details="${career.id}">Ver m├ís detalles</button>
             <button class="btn btn--ghost" type="button" data-career-star="${career.id}">
-              ${isFavorite ? "Quitar" : "Añadir"} ⭐
+              ${isFavorite ? "Quitar" : "A├▒adir"} Ô¡É
             </button>
           </div>
         `;
@@ -686,7 +694,7 @@
 
     if (universitiesNode) {
       universitiesNode.innerHTML = career.universities
-        .map((item) => `<li>${item.name} · ${item.country} (${formatCost(item.cost)})</li>`)
+        .map((item) => `<li>${item.name} ┬À ${item.country} (${formatCost(item.cost)})</li>`)
         .join("");
     }
 
@@ -718,7 +726,7 @@
     }
     const isFavorite = Array.isArray(state.user.favoriteCareers) && state.user.favoriteCareers.includes(careerId);
     favoriteBtn.setAttribute("data-active", isFavorite ? "true" : "false");
-    favoriteLabel.textContent = isFavorite ? "Quitar de favoritos" : "Añadir a favoritos";
+    favoriteLabel.textContent = isFavorite ? "Quitar de favoritos" : "A├▒adir a favoritos";
   }
 
   function closeCareerModal() {
@@ -764,7 +772,7 @@
     button.addEventListener("click", () => {
       clearFeedback(feedbackNode);
       const confirmed = window.confirm(
-        "¿Seguro que deseas cerrar tu cuenta? Esta acción eliminará tus resultados, favoritos y progreso."
+        "┬┐Seguro que deseas cerrar tu cuenta? Esta acci├│n eliminar├í tus resultados, favoritos y progreso."
       );
       if (!confirmed) {
         return;
@@ -836,7 +844,7 @@
 
       const record = {
         id: state.storage.generateId(),
-        title: title || "Carrera sin título",
+        title: title || "Carrera sin t├¡tulo",
         notes: notes || "",
         createdAt: new Date().toISOString()
       };
@@ -924,6 +932,153 @@
       card.appendChild(footer);
       listNode.appendChild(card);
     });
+  }
+
+  function bindFollow(state) {
+    const form = document.querySelector("[data-follow-form]");
+    if (!form) {
+      return;
+    }
+
+    const feedbackNode = form.querySelector("[data-follow-feedback]");
+    const listNode = document.querySelector("[data-following-list]");
+    const emptyState = document.querySelector("[data-following-empty]");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      clearFeedback(feedbackNode);
+
+      const formData = new FormData(form);
+      const query = state.storage.sanitize(formData.get("query"));
+
+      if (!query) {
+        setFeedback(feedbackNode, "Ingresa un nombre o nickname.", "error");
+        return;
+      }
+
+      const candidate = findFollowCandidate(state, query);
+      if (!candidate) {
+        setFeedback(feedbackNode, "No encontramos un perfil compatible con tu b├║squeda.", "error");
+        return;
+      }
+
+      if (candidate.id === state.user.id) {
+        setFeedback(feedbackNode, "No puedes seguir tu propio perfil.", "error");
+        return;
+      }
+
+      if (!Array.isArray(state.user.followingIds)) {
+        state.user.followingIds = [];
+      }
+
+      if (state.user.followingIds.includes(candidate.id)) {
+        setFeedback(feedbackNode, "Ya sigues a esta persona.", "error");
+        return;
+      }
+
+      state.user.followingIds.push(candidate.id);
+      state.user.updatedAt = new Date().toISOString();
+      persistUser(state);
+      form.reset();
+      renderFollowing(state, { listNode, emptyState });
+      hydrateProfileSummary(state);
+      setFeedback(feedbackNode, `Ahora sigues a ${getDisplayName(candidate)}.`, "success");
+    });
+
+    if (listNode) {
+      listNode.addEventListener("click", (event) => {
+        const removeButton = event.target.closest("[data-unfollow]");
+        if (!removeButton) {
+          return;
+        }
+        const userId = removeButton.getAttribute("data-unfollow");
+        state.user.followingIds = state.user.followingIds.filter((id) => id !== userId);
+        state.user.updatedAt = new Date().toISOString();
+        persistUser(state);
+        renderFollowing(state, { listNode, emptyState });
+        hydrateProfileSummary(state);
+      });
+    }
+
+    renderFollowing(state, { listNode, emptyState });
+  }
+
+  function renderFollowing(state, cache) {
+    const listNode = cache?.listNode ?? document.querySelector("[data-following-list]");
+    const emptyState = cache?.emptyState ?? document.querySelector("[data-following-empty]");
+
+    if (!listNode || !emptyState) {
+      return;
+    }
+
+    listNode.innerHTML = "";
+
+    const users = state.user.followingIds
+      .map((id) => state.storage.findUserById(id))
+      .filter(Boolean)
+      .map((candidate) => state.storage.withUserDefaults(candidate));
+
+    if (!users.length) {
+      emptyState.classList.remove("hidden");
+      return;
+    }
+
+    emptyState.classList.add("hidden");
+
+    users.forEach((candidate) => {
+      const item = document.createElement("div");
+      item.className = "profile-follow-item";
+
+      const name = document.createElement("strong");
+      name.textContent = getDisplayName(candidate);
+      item.appendChild(name);
+
+      const meta = document.createElement("span");
+      meta.style.fontSize = "0.9rem";
+      meta.style.color = "rgba(15, 23, 42, 0.65)";
+      meta.textContent = candidate.segment === "adult" ? "Adulto" : "Menor";
+      item.appendChild(meta);
+
+      const unfollow = document.createElement("button");
+      unfollow.type = "button";
+      unfollow.className = "btn btn--outline";
+      unfollow.style.padding = "0.35rem 0.85rem";
+      unfollow.style.fontSize = "0.85rem";
+      unfollow.textContent = "Dejar de seguir";
+      unfollow.setAttribute("data-unfollow", candidate.id);
+
+      item.appendChild(unfollow);
+      listNode.appendChild(item);
+    });
+  }
+
+  function findFollowCandidate(state, query) {
+    const normalized = query.toLowerCase();
+    const allUsers = state.storage.loadUsers();
+
+    return allUsers.find((user) => {
+      if (user.id === state.user.id) {
+        return false;
+      }
+
+      if (state.user.segment === "minor" && user.segment !== "minor") {
+        return false;
+      }
+
+      if (state.user.segment === "adult" && user.segment === "minor") {
+        // Adultos pueden seguir a otros adultos y perfiles menores s├│lo si est├ín aprobados; conservadoramente limitamos a adultos.
+        return matchesQuery(user, normalized) && user.segment === "adult";
+      }
+
+      return matchesQuery(user, normalized);
+    });
+  }
+
+  function matchesQuery(user, normalized) {
+    const haystack = [user.displayName, user.firstName, user.lastName, user.nickname]
+      .filter(Boolean)
+      .map((value) => String(value).toLowerCase());
+    return haystack.some((value) => value.includes(normalized));
   }
 
   function renderInterestProfile(state) {
@@ -1093,7 +1248,7 @@
       });
       toggle.setAttribute("aria-expanded", String(state.editExpanded));
       if (label) {
-        label.textContent = state.editExpanded ? "Cerrar edición" : "Editar perfil";
+        label.textContent = state.editExpanded ? "Cerrar edici├│n" : "Editar perfil";
       }
     };
 
@@ -1136,6 +1291,10 @@
       month: "short",
       day: "numeric"
     });
+  }
+
+  function getDisplayName(user) {
+    return user.displayName || user.firstName || user.nickname || "Perfil";
   }
 
   function clearFeedback(node) {

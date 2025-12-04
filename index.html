@@ -10,6 +10,7 @@
 		/>
 		<link rel="stylesheet" href="css/styles.css" />
 		<script defer src="js/storage.js"></script>
+		<script defer src="js/careers_catalog.js"></script>
 		<script defer src="js/main.js"></script>
 	</head>
 	<body data-base-path="">
@@ -49,6 +50,21 @@
 				</div>
 			</nav>
 		</header>
+		<div class="page-search">
+			<form class="page-search__form" data-global-search>
+				<label class="sr-only" for="globalSearchInput">Buscar en Klesis</label>
+				<input
+					class="page-search__input"
+					type="search"
+					id="globalSearchInput"
+					name="q"
+					placeholder="Busca carreras, misiones o soporte"
+					autocomplete="off"
+				/>
+				<button class="btn btn--primary page-search__button" type="submit">Buscar</button>
+			</form>
+			<div class="page-search__results hidden" data-global-search-results aria-live="polite"></div>
+		</div>
 		<main>
 			<div class="segment-view" data-segment-view="guest">
 				<section class="hero">

@@ -3,12 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Misiones Klesis | Klesis</title>
+    <title>Quizzies Klesis | Klesis</title>
     <link rel="stylesheet" href="../../css/styles.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
     <script defer src="../../js/storage.js"></script>
     <script defer src="../../js/main.js"></script>
-    <script defer src="../../js/minor_quiz.js"></script>
     <script defer src="../../js/minor_flash_quiz.js"></script>
   </head>
   <body data-base-path="../../" data-require-segment="minor">
@@ -20,7 +18,7 @@
         </a>
         <div class="nav__links" role="list">
           <a href="../auth/segment.html">Autenticación</a>
-          <a href="otros-test.html" aria-current="page">Misiones</a>
+          <a href="otros-test.html" aria-current="page">Quizzies</a>
           <a href="../soporte/atencion.html">Zona segura</a>
         </div>
         <div class="nav__actions">
@@ -37,7 +35,7 @@
               <span class="nav__dropdown-icon" aria-hidden="true">▾</span>
             </button>
             <div class="nav__dropdown-menu hidden" id="navExploreMenu" role="menu" data-dropdown-menu>
-              <a role="menuitem" href="otros-test.html">Misiones activas</a>
+              <a role="menuitem" href="otros-test.html">Quizzies activos</a>
               <a role="menuitem" href="../soporte/atencion.html">Contactar tutor</a>
               <a role="menuitem" href="../auth/login_menor.html">Cambiar de cuenta</a>
             </div>
@@ -47,17 +45,32 @@
       </nav>
     </header>
 
+    <div class="page-search">
+      <form class="page-search__form" data-global-search>
+        <label class="sr-only" for="quizziesSearchInput">Buscar en Klesis</label>
+        <input
+          class="page-search__input"
+          type="search"
+          id="quizziesSearchInput"
+          name="q"
+          placeholder="Busca carreras, misiones o soporte"
+          autocomplete="off"
+        />
+        <button class="btn btn--primary page-search__button" type="submit">Buscar</button>
+      </form>
+      <div class="page-search__results hidden" data-global-search-results aria-live="polite"></div>
+    </div>
+
     <main class="layout-page" style="max-width: 980px">
       <section class="hero hero--playful" style="margin-bottom: 2.5rem">
         <div>
-          <span class="hero__badge hero__badge--minor">Misiones Klesis</span>
+          <span class="hero__badge hero__badge--minor">Quizzies Klesis</span>
           <h1 class="hero__title">Aventuras interactivas para descubrir tu vocación.</h1>
           <p class="hero__subtitle">
-            Cada misión cuenta una historia diferente: conoce a mentores imaginarios, responde preguntas con imágenes y comparte tu aprendizaje con tu tutor.
+            Elige desafíos rápidos, historias interactivas y trivias que te ayudan a conocer tus talentos. Cada quiz tiene música, colores y recompensas coleccionables.
           </p>
           <div class="hero__actions">
-            <a class="btn btn--minor" href="#superpoder">Descubrir mi superpoder</a>
-            <a class="btn btn--outline" href="../soporte/atencion.html">Pedir ayuda a mi tutor</a>
+            <a class="btn btn--minor" href="#quizzies-gallery">Ver todos los quizzies</a>
           </div>
         </div>
         <aside class="hero__card card--playful">
@@ -70,236 +83,52 @@
         </aside>
       </section>
 
-      <section id="superpoder" class="section" style="padding-top: 0">
-        <header class="section__header" style="margin-bottom: 2.5rem">
-          <span class="section__eyebrow">Test destacado</span>
-          <h2 class="section__title">Descubre tu superpoder vocacional</h2>
-          <p class="section__lead">
-            Vive una aventura en tres etapas: bienvenida, preguntas y un panel de resultados con tu perfil de intereses en tiempo real.
-          </p>
-          <p class="section__lead" style="font-size: 1rem; color: rgba(15, 23, 42, 0.75)">
-            Cada bloque está narrado con dinámicas interactivas para que explores profesiones sin aburrirte: misiones guiadas, feedback inmediato y un radar que puedes compartir con tu tutor para seguir mejorando.
-          </p>
+      <section id="quizzies-gallery" class="quizzies-gallery">
+        <header class="quizzies-gallery__header">
+          <h2>Quizzies listos para jugar</h2>
+          <p>Explora tests cortos con animaciones, música suave y recompensas. Cada tarjeta te lleva directo a la aventura que más te llame.</p>
         </header>
-        <div class="quiz-app card card--playful" data-quiz-app>
-          <header class="quiz-app__header">
-            <div>
-              <h3 class="quiz-app__title">✨ Test de Intereses</h3>
-              <p class="quiz-app__subtitle">
-                Responde cinco preguntas rápidas para saber si tu superpoder es la creatividad, la ayuda social, la ciencia o el liderazgo.
-              </p>
-            </div>
-            <div class="quiz-app__meta">
-              <span class="badge badge--minor">Ideal 13-17 años</span>
-              <span class="badge badge--ghost">Duración 5 minutos</span>
-            </div>
-          </header>
-
-          <div class="quiz-app__step" data-quiz-step="welcome">
-            <div class="quiz-app__welcome">
-              <p>
-                ¡Hola! Este test te ayuda a descubrir qué área vibra contigo. Al terminar verás tu radar de intereses y podrás compartirlo con tu tutor.
-              </p>
-              <button class="btn btn--minor quiz-app__primary" type="button" data-quiz-start>
-                ¡Empezar aventura! 🚀
-              </button>
-            </div>
-          </div>
-
-          <div class="quiz-app__step hidden" data-quiz-step="quiz">
-            <div class="quiz-app__progress" aria-live="polite">
-              <span>Pregunta <strong data-quiz-index>1</strong> de <strong data-quiz-total>5</strong></span>
-              <div class="quiz-app__progress-bar">
-                <div class="quiz-app__progress-meter" data-quiz-progress style="width: 0%"></div>
-              </div>
-            </div>
-            <h4 class="quiz-app__question" data-quiz-question>Pregunta aquí</h4>
-            <div class="quiz-app__options" data-quiz-options></div>
-          </div>
-
-          <div class="quiz-app__step hidden" data-quiz-step="results">
-            <h4 class="quiz-app__question">¡Tu perfil de intereses es único! 🌟</h4>
-            <div class="quiz-app__results">
-              <div class="quiz-app__chart">
-                <canvas data-quiz-chart aria-label="Radar de intereses" role="img"></canvas>
-              </div>
-              <div class="quiz-app__summary">
-                <p class="quiz-app__power" data-quiz-result-title>Tu superpoder</p>
-                <p class="quiz-app__recommendation" data-quiz-recommendation></p>
-              </div>
-            </div>
-            <div class="quiz-app__actions">
-              <button class="btn btn--primary" type="button" data-quiz-save>Guardar en mi perfil</button>
-              <button class="btn btn--minor" type="button" data-quiz-repeat>Repetir test 🔄</button>
-              <a class="btn btn--outline" href="../soporte/atencion.html">Compartir con mi tutor</a>
-            </div>
-            <p class="quiz-app__status" data-quiz-save-feedback aria-live="polite"></p>
-          </div>
-        </div>
-      </section>
-
-      <section id="misiones" class="section" style="padding-top: 0">
-        <header class="section__header" style="margin-bottom: 2rem">
-          <span class="section__eyebrow">Misiones destacadas</span>
-          <h2 class="section__title">Elige por temática y gana recompensas</h2>
-          <p class="section__lead">
-            Explora historias con ilustraciones, responde retos creativos y desbloquea insignias para tu álbum digital.
-          </p>
-          <p class="section__lead" style="font-size: 1rem; color: rgba(15, 23, 42, 0.75)">
-            Cada aventura suma puntos para tu perfil, activa badges coleccionables y desbloquea recomendaciones adaptadas a tus respuestas. Puedes repetirlas cuando quieras para ver cómo evolucionan tus intereses.
-          </p>
-        </header>
-        <div class="feature-grid">
-          <article class="feature-card card--playful">
-            <div class="feature-card__icon feature-card__icon--minor" aria-hidden="true">🌟</div>
-            <h2 class="feature-card__title">Misión Exploradores</h2>
-            <p class="feature-card__copy">
-              Viaja con Amy y Leo por diferentes profesiones. Completa retos con pistas visuales y registra tus descubrimientos.
-            </p>
-            <a class="btn btn--minor" href="#">Comenzar</a>
+        <div class="quizzies-grid">
+          <article class="quiz-card quiz-card--sunrise">
+            <div class="quiz-card__emoji" aria-hidden="true">✨</div>
+            <h3 class="quiz-card__title">Superpoder vocacional</h3>
+            <p class="quiz-card__copy">Radar visual para descubrir si brillas en creatividad, ciencia, ayuda social o liderazgo.</p>
+            <a class="quiz-card__link" href="intereses.html">Ingresar</a>
           </article>
-          <article class="feature-card card--playful">
-            <div class="feature-card__icon feature-card__icon--minor" aria-hidden="true">🎨</div>
-            <h2 class="feature-card__title">Taller creativo</h2>
-            <p class="feature-card__copy">
-              Diseña un afiche, crea un podcast mini o arma un plan para ayudar a tu comunidad. Comparte el resultado con tu tutor.
-            </p>
-            <a class="btn btn--minor" href="#">Descubrir</a>
+          <article class="quiz-card quiz-card--ocean">
+            <div class="quiz-card__emoji" aria-hidden="true">🧭</div>
+            <h3 class="quiz-card__title">Test de intereses</h3>
+            <p class="quiz-card__copy">Explora en minutos tus talentos favoritos y recibe un mapa de áreas para seguir descubriendo.</p>
+            <a class="quiz-card__link" href="intereses.html">Comenzar</a>
           </article>
-          <article class="feature-card card--playful">
-            <div class="feature-card__icon feature-card__icon--minor" aria-hidden="true">🧩</div>
-            <h2 class="feature-card__title">Reto habilidades</h2>
-            <p class="feature-card__copy">
-              Prueba juegos rápidos de lógica, imaginación y trabajo en equipo. Gana gemas que puedes canjear por stickers.
-            </p>
-            <a class="btn btn--minor" href="#">Jugar</a>
+          <article class="quiz-card quiz-card--cosmic">
+            <div class="quiz-card__emoji" aria-hidden="true">🎨</div>
+            <h3 class="quiz-card__title">Mood creativo</h3>
+            <p class="quiz-card__copy">Elige colores, ritmos y personajes para crear tu misión artística del día.</p>
+            <a class="quiz-card__link" href="#mood">Abrir</a>
+          </article>
+          <article class="quiz-card quiz-card--mint">
+            <div class="quiz-card__emoji" aria-hidden="true">🧠</div>
+            <h3 class="quiz-card__title">Trivia 5 minutos</h3>
+            <p class="quiz-card__copy">Preguntas sorpresa con pistas visuales. Gana monedas y compártelas con tu tutor.</p>
+            <a class="quiz-card__link" href="quizzrapido.html#flash-app">Responder</a>
+          </article>
+          <article class="quiz-card quiz-card--candy">
+            <div class="quiz-card__emoji" aria-hidden="true">💬</div>
+            <h3 class="quiz-card__title">Historias interactivas</h3>
+            <p class="quiz-card__copy">Escoge qué hace el protagonista y desbloquea finales alternativos.</p>
+            <a class="quiz-card__link" href="#story-mode">Explorar</a>
+          </article>
+          <article class="quiz-card quiz-card--sunset">
+            <div class="quiz-card__emoji" aria-hidden="true">🌱</div>
+            <h3 class="quiz-card__title">Reto bienestar</h3>
+            <p class="quiz-card__copy">Mini-checklist para medir tu energía, tus descansos y tu ánimo creativo.</p>
+            <a class="quiz-card__link" href="#wellbeing">Empezar</a>
           </article>
         </div>
       </section>
 
-      <section id="flash-test" class="section" style="padding-top: 0">
-        <header class="section__header" style="margin-bottom: 2.5rem">
-          <span class="section__eyebrow">Test exprés</span>
-          <h2 class="section__title">Flash vocacional y explorador de carreras</h2>
-          <p class="section__lead">
-            Descubre tu campo ideal en 12 preguntas tipo versus y explora universos de carreras pensados para adolescentes.
-          </p>
-          <p class="section__lead" style="font-size: 1rem; color: rgba(15, 23, 42, 0.75)">
-            Guarda tus resultados para que tu tutor los revise y navega las opciones relacionadas con la categoría que más te emocione.
-          </p>
-        </header>
-
-        <div class="flash-app card" data-flash-app>
-          <div class="flash-app__screen" data-flash-screen="welcome">
-            <div class="flash-app__welcome">
-              <div style="font-size: 2.8rem">🚀💡💰</div>
-              <p>¿Prefieres jugar el test rápido o explorar universos vocacionales? Puedes volver al inicio en cualquier momento.</p>
-              <div class="flash-app__actions" style="justify-content: center; gap: 1rem">
-                <button class="btn btn--minor" type="button" data-flash-start>¡Empezar test rápido! ⚡</button>
-                <button class="btn btn--outline" type="button" data-flash-explore>Explorar carreras 🗺️</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="flash-app__screen hidden" data-flash-screen="quiz">
-            <div class="flash-app__progress" aria-live="polite">
-              <span>Pregunta <strong data-flash-index>1</strong> de <strong data-flash-total>12</strong></span>
-              <div class="flash-app__progress-bar">
-                <div class="flash-app__progress-meter" data-flash-progress style="width: 0%"></div>
-              </div>
-            </div>
-            <h3 class="quiz-app__question" data-flash-question>Pregunta aquí</h3>
-            <div class="flash-app__options" data-flash-options></div>
-          </div>
-
-          <div class="flash-app__screen hidden" data-flash-screen="results">
-            <div class="flash-app__results">
-              <div style="font-size: 3rem" data-flash-emoji>🎉</div>
-              <h3 class="quiz-app__question" data-flash-title>Resultado</h3>
-              <div class="profile-empty" style="background: rgba(14, 165, 233, 0.12); border: none" data-flash-highlight>
-                <strong>Tu campo ideal:</strong> <span data-flash-main></span>
-              </div>
-              <p style="margin: 0; color: rgba(15, 23, 42, 0.74)" data-flash-copy></p>
-              <div class="profile-chip-list" data-flash-careers></div>
-              <div class="flash-app__actions" style="justify-content: center; gap: 1rem">
-                <button class="btn btn--minor" type="button" data-flash-save>Guardar en mi perfil</button>
-                <button class="btn btn--outline" type="button" data-flash-restart>Volver a intentar</button>
-                <button class="btn btn--outline" type="button" data-flash-explore>Explorar opciones similares</button>
-              </div>
-              <p class="flash-app__status" data-flash-feedback aria-live="polite"></p>
-            </div>
-          </div>
-
-          <div class="flash-app__screen hidden" data-flash-screen="categories">
-            <div class="flash-app__welcome">
-              <h3 style="margin: 0">Elige un universo para explorar ✨</h3>
-              <p style="margin: 0">Cada carta contiene carreras afines, descripciones breves y un acceso para ver opciones similares.</p>
-            </div>
-            <div class="flash-app__card-grid" data-flash-category-grid></div>
-            <div class="flash-app__actions" style="justify-content: center; gap: 1rem">
-              <button class="btn btn--outline" type="button" data-flash-home>Volver al inicio</button>
-            </div>
-          </div>
-
-          <div class="flash-app__screen hidden" data-flash-screen="careers">
-            <div class="flash-app__welcome">
-              <h3 style="margin: 0" data-flash-career-heading>Universo</h3>
-              <p style="margin: 0" data-flash-career-copy>Explora las cartas para abrir el detalle de cada carrera y conocer opciones similares.</p>
-            </div>
-            <div class="flash-app__card-grid" data-flash-career-grid></div>
-            <div class="flash-app__actions" style="justify-content: center; gap: 1rem">
-              <button class="btn btn--outline" type="button" data-flash-back>Elegir otro universo</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section supporting" style="padding-top: 2rem">
-        <div class="supporting__grid">
-          <article class="supporting-card">
-            <h3 class="supporting-card__title">Para ti</h3>
-            <ul class="supporting-card__list">
-              <li>Interfaz colorida con lenguaje cercano.</li>
-              <li>Feedback positivo y rápido al finalizar.</li>
-              <li>Recordatorios y logros coleccionables.</li>
-            </ul>
-          </article>
-          <article class="supporting-card">
-            <h3 class="supporting-card__title">Para tu tutor</h3>
-            <ul class="supporting-card__list">
-              <li>Reporte con tus respuestas y logros.</li>
-              <li>Recomendaciones para acompañarte.</li>
-              <li>Control total sobre con quién compartes.</li>
-            </ul>
-          </article>
-          <article class="supporting-card">
-            <h3 class="supporting-card__title">Próximamente</h3>
-            <ul class="supporting-card__list">
-              <li>Misiones cooperativas con tus amigos.</li>
-              <li>Álbum de stickers digitales animados.</li>
-              <li>Eventos en vivo con mentores invitados.</li>
-            </ul>
-          </article>
-        </div>
-      </section>
     </main>
-
-    <div class="flash-modal" data-flash-modal>
-      <div class="flash-modal__content">
-        <button class="flash-modal__close" type="button" aria-label="Cerrar" data-flash-modal-close>×</button>
-        <div style="text-align: center; display: grid; gap: 0.75rem">
-          <div style="font-size: 3rem" data-flash-modal-emoji>⭐</div>
-          <h3 class="quiz-app__question" style="margin: 0" data-flash-modal-title>Carrera</h3>
-          <p style="margin: 0; color: rgba(15, 23, 42, 0.72)" data-flash-modal-desc>
-            Aquí verás una descripción breve y las carreras similares que comparten competencias.
-          </p>
-          <div class="profile-empty" style="background: rgba(15, 23, 42, 0.06); border: none; text-align: left; font-size: 0.95rem">
-            <strong>Opciones relacionadas</strong>
-            <ul class="flash-modal__list" data-flash-modal-list></ul>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <footer>
       <div class="footer__grid">
@@ -317,7 +146,7 @@
         <div class="footer__column">
           <div class="footer__title">Recursos</div>
           <ul class="footer__list">
-            <li><a href="otros-test.html">Misiones</a></li>
+            <li><a href="otros-test.html">Quizzies</a></li>
             <li><a href="../soporte/atencion.html">Zona segura</a></li>
             <li><a href="../auth/login_menor.html">Cambiar de cuenta</a></li>
           </ul>

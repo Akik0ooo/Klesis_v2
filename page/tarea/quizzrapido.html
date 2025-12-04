@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quiz rápido | Klesis</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <script defer src="../../js/storage.js"></script>
+    <script defer src="../../js/main.js"></script>
+    <script defer src="../../js/minor_flash_quiz.js"></script>
+  </head>
+  <body data-base-path="../../" data-require-segment="minor">
+    <header>
+      <nav class="nav" aria-label="Principal">
+        <a class="nav__brand" href="../../index.html">
+          <span class="nav__brand-badge" aria-hidden="true">K</span>
+          Klesis
+        </a>
+        <div class="nav__links" role="list">
+          <a href="../auth/segment.html">Autenticación</a>
+          <a href="otros-test.html" aria-current="page">Quizzies</a>
+          <a href="../soporte/atencion.html">Zona segura</a>
+        </div>
+        <div class="nav__actions">
+          <div class="nav__dropdown" data-dropdown>
+            <button
+              class="btn btn--outline nav__dropdown-toggle"
+              type="button"
+              data-dropdown-toggle
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="navExploreMenu"
+            >
+              Explorar
+              <span class="nav__dropdown-icon" aria-hidden="true">▾</span>
+            </button>
+            <div class="nav__dropdown-menu hidden" id="navExploreMenu" role="menu" data-dropdown-menu>
+              <a role="menuitem" href="otros-test.html">Quizzies activos</a>
+              <a role="menuitem" href="../soporte/atencion.html">Contactar tutor</a>
+              <a role="menuitem" href="../auth/login_menor.html">Cambiar de cuenta</a>
+            </div>
+          </div>
+          <a class="btn btn--minor" href="../auth/register_menor.html">Invitar a un amigo</a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="page-search">
+      <form class="page-search__form" data-global-search>
+        <label class="sr-only" for="flashSearchInput">Buscar en Klesis</label>
+        <input
+          class="page-search__input"
+          type="search"
+          id="flashSearchInput"
+          name="q"
+          placeholder="Busca carreras, misiones o soporte"
+          autocomplete="off"
+        />
+        <button class="btn btn--primary page-search__button" type="submit">Buscar</button>
+      </form>
+      <div class="page-search__results hidden" data-global-search-results aria-live="polite"></div>
+    </div>
+
+    <main class="layout-page" style="max-width: 880px">
+      <section class="section" style="padding-top: 1rem; padding-bottom: 2.5rem">
+        <header class="section__header section__header--minimal" style="margin-bottom: 2rem; text-align: center">
+          <h1 class="section__title" style="max-width: 32rem; margin: 0 auto 0.75rem">Quiz velocidad</h1>
+          <p class="section__subtitle" style="max-width: 32rem">Flash challenge vocacional</p>
+          <p class="section__lead" style="max-width: 40rem; margin: 0.75rem auto 0">
+            12 preguntas tipo versus con animaciones y feedback inmediato para descubrir tu universo ideal.
+          </p>
+          <p class="section__lead" style="font-size: 1rem; color: rgba(15, 23, 42, 0.75); max-width: 40rem; margin: 0.75rem auto 0">
+            Guarda tus resultados para tu tutor, explora universos interactivos y desbloquea opciones relacionadas con un solo clic.
+          </p>
+        </header>
+        <div class="hero__actions" style="gap: 0.75rem; justify-content: center">
+          <a class="btn btn--minor" href="#flash-app">¡Empezar test rápido! ⚡</a>
+          <a class="btn btn--outline" href="otros-test.html">Volver a Quizzies</a>
+        </div>
+      </section>
+
+      <section class="section" id="flash-app" style="padding-top: 0">
+        <div class="flash-app card" data-flash-app>
+          <div class="flash-app__screen" data-flash-screen="welcome">
+            <div class="flash-app__welcome">
+              <div style="font-size: 2.8rem">🚀💡💰</div>
+              <p>¿Prefieres jugar el test rápido o explorar universos vocacionales? Puedes volver al inicio en cualquier momento.</p>
+              <div class="flash-app__actions" style="justify-content: center; gap: 1rem">
+                <button class="btn btn--minor" type="button" data-flash-start>¡Empezar test rápido! ⚡</button>
+                <button class="btn btn--outline" type="button" data-flash-explore>Explorar carreras 🗺️</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flash-app__screen hidden" data-flash-screen="quiz">
+            <div class="flash-app__progress" aria-live="polite">
+              <span>Pregunta <strong data-flash-index>1</strong> de <strong data-flash-total>12</strong></span>
+              <div class="flash-app__progress-bar">
+                <div class="flash-app__progress-meter" data-flash-progress style="width: 0%"></div>
+              </div>
+            </div>
+            <h3 class="quiz-app__question" data-flash-question>Pregunta aquí</h3>
+            <div class="flash-app__options" data-flash-options></div>
+          </div>
+
+          <div class="flash-app__screen hidden" data-flash-screen="results">
+            <div class="flash-app__results">
+              <div style="font-size: 3rem" data-flash-emoji>🎉</div>
+              <h3 class="quiz-app__question" data-flash-title>Resultado</h3>
+              <div class="profile-empty" style="background: rgba(14, 165, 233, 0.12); border: none" data-flash-highlight>
+                <strong>Tu campo ideal:</strong> <span data-flash-main></span>
+              </div>
+              <p style="margin: 0; color: rgba(15, 23, 42, 0.74)" data-flash-copy></p>
+              <div class="profile-chip-list" data-flash-careers></div>
+              <div class="flash-app__actions" style="justify-content: center; gap: 1rem">
+                <button class="btn btn--minor" type="button" data-flash-save>Guardar en mi perfil</button>
+                <button class="btn btn--outline" type="button" data-flash-restart>Volver a intentar</button>
+                <button class="btn btn--outline" type="button" data-flash-explore>Explorar opciones similares</button>
+              </div>
+              <p class="flash-app__status" data-flash-feedback aria-live="polite"></p>
+            </div>
+          </div>
+
+          <div class="flash-app__screen hidden" data-flash-screen="categories">
+            <div class="flash-app__welcome">
+              <h3 style="margin: 0">Elige un universo para explorar ✨</h3>
+              <p style="margin: 0">Cada carta contiene carreras afines, descripciones breves y un acceso para ver opciones similares.</p>
+            </div>
+            <div class="flash-app__card-grid" data-flash-category-grid></div>
+            <div class="flash-app__actions" style="justify-content: center; gap: 1rem">
+              <button class="btn btn--outline" type="button" data-flash-home>Volver al inicio</button>
+            </div>
+          </div>
+
+          <div class="flash-app__screen hidden" data-flash-screen="careers">
+            <div class="flash-app__welcome">
+              <h3 style="margin: 0" data-flash-career-heading>Universo</h3>
+              <p style="margin: 0" data-flash-career-copy>Explora las cartas para abrir el detalle de cada carrera y conocer opciones similares.</p>
+            </div>
+            <div class="flash-app__card-grid" data-flash-career-grid></div>
+            <div class="flash-app__actions" style="justify-content: center; gap: 1rem">
+              <button class="btn btn--outline" type="button" data-flash-back>Elegir otro universo</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="flash-modal" data-flash-modal>
+      <div class="flash-modal__content">
+        <button class="flash-modal__close" type="button" aria-label="Cerrar" data-flash-modal-close>×</button>
+        <div style="text-align: center; display: grid; gap: 0.75rem">
+          <div style="font-size: 3rem" data-flash-modal-emoji>⭐</div>
+          <h3 class="quiz-app__question" style="margin: 0" data-flash-modal-title>Carrera</h3>
+          <p style="margin: 0; color: rgba(15, 23, 42, 0.72)" data-flash-modal-desc>
+            Aquí verás una descripción breve y las carreras similares que comparten competencias.
+          </p>
+          <div class="profile-empty" style="background: rgba(15, 23, 42, 0.06); border: none; text-align: left; font-size: 0.95rem">
+            <strong>Opciones relacionadas</strong>
+            <ul class="flash-modal__list" data-flash-modal-list></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Klesis</div>
+          <p>Construimos rutas vocacionales seguras para cada etapa.</p>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Plataforma</div>
+          <ul class="footer__list">
+            <li><a href="../auth/segment.html">Crear cuenta</a></li>
+            <li><a href="../auth/login_menor.html">Ingresar menor</a></li>
+          </ul>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Recursos</div>
+          <ul class="footer__list">
+            <li><a href="otros-test.html">Quizzies</a></li>
+            <li><a href="../soporte/atencion.html">Zona segura</a></li>
+            <li><a href="../auth/login_menor.html">Cambiar de cuenta</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

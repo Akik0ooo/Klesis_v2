@@ -53,6 +53,7 @@ function initAdultRegister(storage) {
     const password = String(formData.get("password"));
     const confirmPassword = String(formData.get("confirmPassword"));
     const interests = storage.sanitize(formData.get("interests"));
+    const remember = formData.get("remember") === "on";
 
     const errors = [];
     if (!firstName) {
@@ -102,8 +103,9 @@ function initAdultRegister(storage) {
     };
 
     storage.upsertUser(user);
+    persistSession(storage, user, remember);
     form.reset();
-    window.location.href = "login_mayordeedad.html";
+    window.location.href = "../../index.html";
   });
 }
 
@@ -128,6 +130,7 @@ function initMinorRegister(storage) {
     const age = Number(formData.get("age"));
     const rawInterests = Array.from(form.querySelectorAll("#minorInterests option:checked")).map((option) => option.value);
     const customInterest = storage.sanitize(formData.get("customInterest"));
+    const remember = formData.get("remember") === "on";
 
     const interests = rawInterests.filter(Boolean);
     if (customInterest) {
@@ -186,8 +189,9 @@ function initMinorRegister(storage) {
     };
 
     storage.upsertUser(user);
+    persistSession(storage, user, remember);
     form.reset();
-    window.location.href = "login_menor.html";
+    window.location.href = "../../index.html";
   });
 }
 

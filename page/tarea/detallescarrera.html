@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detalle de carrera | Klesis</title>
+    <meta name="description" content="Consulta universidades, países y mallas curriculares referenciales para cada carrera del catálogo de Klesis." />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <script defer src="../../js/storage.js"></script>
+    <script defer src="../../js/careers_catalog.js"></script>
+    <script defer src="../../js/career_detail_data.js"></script>
+    <script defer src="../../js/main.js"></script>
+    <script defer src="../../js/career_detail.js"></script>
+  </head>
+  <body data-base-path="../../">
+    <header>
+      <nav class="nav" aria-label="Principal">
+        <a class="nav__brand" href="../../index.html">
+          <span class="nav__brand-badge" aria-hidden="true">K</span>
+          Klesis
+        </a>
+        <div class="nav__links" role="list">
+          <a href="../auth/segment.html">Autenticación</a>
+          <a href="../tarea/vocacional.html">Plan profesional</a>
+          <a href="../tarea/otros-test.html">Misiones</a>
+          <a href="../soporte/atencion.html">Atención</a>
+        </div>
+        <div class="nav__actions">
+          <div class="nav__dropdown" data-dropdown>
+            <button
+              class="btn btn--outline nav__dropdown-toggle"
+              type="button"
+              data-dropdown-toggle
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="navExploreMenu"
+            >
+              Explorar
+              <span class="nav__dropdown-icon" aria-hidden="true">▾</span>
+            </button>
+            <div class="nav__dropdown-menu hidden" id="navExploreMenu" role="menu" data-dropdown-menu>
+              <a role="menuitem" href="../tarea/vocacional.html">Plan profesional</a>
+              <a role="menuitem" href="../tarea/otros-test.html">Misiones</a>
+              <a role="menuitem" href="../soporte/atencion.html">Atención</a>
+              <a role="menuitem" href="../foro.html">Foro (adultos)</a>
+            </div>
+          </div>
+          <a class="btn btn--primary" href="../auth/segment.html">Crear cuenta</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="layout-page career-detail-page">
+      <div class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../carreras.html">Catálogo de carreras</a>
+        <span class="breadcrumb__divider" aria-hidden="true">/</span>
+        <span data-breadcrumb-title>Detalle</span>
+      </div>
+
+      <section class="career-hero" data-career-view>
+        <header class="career-hero__header">
+          <span class="career-hero__emoji" data-career-emoji aria-hidden="true">🎓</span>
+          <div>
+            <h1 class="career-hero__title" data-career-title>Selecciona una carrera</h1>
+            <p class="career-hero__summary" data-career-summary>
+              Aquí verás una descripción extendida, países donde se estudia y la malla curricular referencial.
+            </p>
+          </div>
+        </header>
+        <dl class="career-hero__meta">
+          <div>
+            <dt>Programa</dt>
+            <dd data-career-program>Programa</dd>
+          </div>
+          <div>
+            <dt>Región</dt>
+            <dd data-career-region>Regiones disponibles</dd>
+          </div>
+          <div>
+            <dt>Inversión</dt>
+            <dd data-career-cost>Costo estimado no disponible</dd>
+          </div>
+        </dl>
+        <div class="career-detail__tags" data-career-tags></div>
+      </section>
+
+      <section class="career-detail__overview">
+        <article class="career-detail__card">
+          <h2>Áreas de enfoque</h2>
+          <ul class="career-focus" data-career-focus></ul>
+        </article>
+        <article class="career-detail__card career-detail__card--secondary">
+          <h2>Salidas profesionales</h2>
+          <ul class="career-detail__outcomes" data-career-outcomes></ul>
+        </article>
+      </section>
+
+      <section class="career-detail__institutions" aria-labelledby="institutions-heading">
+        <header class="career-detail__section-header">
+          <div>
+            <h2 id="institutions-heading">Universidades donde se cursa</h2>
+            <p>Elige un país para ver universidades e institutos asociados a esta carrera.</p>
+          </div>
+          <label class="career-detail__country-picker">
+            <span>País</span>
+            <select data-country-select aria-label="Seleccionar país"></select>
+          </label>
+        </header>
+        <div class="career-detail__layout">
+          <aside class="career-detail__sidebar" aria-label="Instituciones disponibles">
+            <div class="career-detail__institutions-list" data-institution-list></div>
+            <p class="career-detail__placeholder hidden" data-detail-empty>
+              Todavía no añadimos instituciones para esta carrera. Estamos actualizando la base de datos.
+            </p>
+          </aside>
+          <div class="career-detail__content">
+            <div class="career-detail__institution-body" data-institution-detail></div>
+            <section class="career-curriculum" aria-label="Malla curricular">
+              <h3>Malla curricular referencial</h3>
+              <div class="career-curriculum__grid" data-curriculum></div>
+            </section>
+            <p class="career-detail__note" data-institution-notes></p>
+            <div class="career-detail__sources-wrapper">
+              <h4>Fuentes consultadas</h4>
+              <ul class="career-detail__sources hidden" data-institution-sources></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="career-detail__cta">
+        <div>
+          <h2>¿Quieres comparar más programas?</h2>
+          <p>Regresa al catálogo y guarda tus favoritos en tu perfil de Klesis.</p>
+        </div>
+        <a class="btn btn--primary" href="../carreras.html">Volver al catálogo</a>
+      </section>
+
+      <div class="career-detail__fallback hidden" data-no-career>
+        No encontramos la carrera. Vuelve al catálogo para seleccionarla nuevamente.
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Klesis</div>
+          <p>Construimos rutas vocacionales seguras para cada etapa.</p>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Plataforma</div>
+          <ul class="footer__list">
+            <li><a href="../auth/segment.html">Crear cuenta</a></li>
+            <li><a href="../auth/login_menor.html">Ingresar menor</a></li>
+          </ul>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Recursos</div>
+          <ul class="footer__list">
+            <li><a href="../carreras.html">Catálogo de carreras</a></li>
+            <li><a href="../tarea/otros-test.html">Misiones</a></li>
+            <li><a href="../soporte/atencion.html">Atención</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

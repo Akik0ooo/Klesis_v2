@@ -128,16 +128,45 @@
     const storage = window.KlesisStorage;
     const currentUser = storage?.loadActiveUser?.();
 
+    let activeStepKey = null;
+
     const showStep = (key) => {
-      Object.values(steps).forEach((step) => {
-        if (step) {
-          step.classList.add("hidden");
-        }
-      });
-      const target = steps[key];
-      if (target) {
-        target.classList.remove("hidden");
+      if (!steps[key]) {
+        return;
       }
+
+      if (activeStepKey === key) {
+        steps[key].classList.remove("hidden");
+        return;
+      }
+
+      const current = activeStepKey ? steps[activeStepKey] : null;
+      const next = steps[key];
+
+      if (current) {
+        current.classList.remove("is-entering");
+        current.classList.add("is-exiting");
+        current.addEventListener(
+          "animationend",
+          () => {
+            current.classList.add("hidden");
+            current.classList.remove("is-exiting");
+          },
+          { once: true }
+        );
+      }
+
+      next.classList.remove("hidden");
+      next.classList.add("is-entering");
+      next.addEventListener(
+        "animationend",
+        () => {
+          next.classList.remove("is-entering");
+        },
+        { once: true }
+      );
+
+      activeStepKey = key;
     };
 
     const resetQuiz = () => {
@@ -145,6 +174,7 @@
       scores = getInitialScores();
       updateProgress(0);
       showStep("welcome");
+      activeStepKey = "welcome";
       latestResults = null;
       setSaveStatus("");
     };
@@ -286,6 +316,7 @@
 
     if (startButton) {
       startButton.addEventListener("click", () => {
+        triggerLaunchAnimation(startButton);
         scores = getInitialScores();
         currentQuestionIndex = 0;
         showStep("quiz");
@@ -350,6 +381,17 @@
       } else {
         saveFeedback.removeAttribute("data-state");
       }
+    }
+
+    function triggerLaunchAnimation(button) {
+      button.setAttribute("data-launch", "true");
+      requestAnimationFrame(() => {
+        button.classList.add("is-launching");
+        setTimeout(() => {
+          button.removeAttribute("data-launch");
+          button.classList.remove("is-launching");
+        }, 360);
+      });
     }
   });
 })();

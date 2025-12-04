@@ -108,6 +108,13 @@
     }
   };
 
+  const CATEGORY_AREA_SLUG = {
+    Creativa: "creatividad",
+    Negocios: "estrategia",
+    Social: "empatia",
+    Maestra: "tecnologia"
+  };
+
   const QUIZ_DATA = [
     { question: "¿Qué prefieres pasar el día haciendo?", optA: { text: "Diseñar el logo de una marca 🎨", category: "Creativa" }, optB: { text: "Crear un plan para vender esa marca 💰", category: "Negocios" } },
     { question: "¿Qué clase te emociona más?", optA: { text: "Aprender sobre el cuerpo humano ❤️", category: "Social" }, optB: { text: "Resolver retos de lógica avanzada 🧠", category: "Maestra" } },
@@ -413,11 +420,14 @@
           <button class="btn btn--outline" type="button">Ver similares</button>
         `;
         const button = card.querySelector("button");
-        button.addEventListener("click", () => showCareerModal(categoryKey, career.id));
+        const targetUrl = buildCareerUrl(categoryKey, career.id);
+        button.addEventListener("click", () => {
+          window.location.href = targetUrl;
+        });
         card.addEventListener("keypress", (event) => {
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
-            showCareerModal(categoryKey, career.id);
+            window.location.href = targetUrl;
           }
         });
         careerGrid.appendChild(card);
@@ -455,6 +465,28 @@
           });
       }
       modal.setAttribute("data-open", "true");
+    }
+
+    function buildCareerUrl(categoryKey, careerId) {
+      const params = new URLSearchParams();
+      const areaSlug = CATEGORY_AREA_SLUG[categoryKey];
+      if (areaSlug) {
+        params.set("area", areaSlug);
+      }
+      const dataset = CATEGORY_DATA[categoryKey];
+      const career = dataset?.careers.find((item) => item.id === careerId);
+      if (career?.name) {
+        params.set("q", career.name);
+      }
+      return `${getBasePath()}page/carreras.html?${params.toString()}`;
+    }
+
+    function getBasePath() {
+      const baseAttr = document.body?.getAttribute("data-base-path") ?? "";
+      if (!baseAttr) {
+        return "";
+      }
+      return baseAttr.endsWith("/") ? baseAttr : `${baseAttr}/`;
     }
 
     function hideModal() {

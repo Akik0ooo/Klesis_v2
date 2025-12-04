@@ -35,7 +35,6 @@
             </p>
             <div class="profile-meta">
               <span data-profile-identifier></span>
-              <span data-profile-following></span>
               <span data-profile-updated></span>
             </div>
             <div class="profile-actions">
@@ -181,29 +180,6 @@
         </form>
         <div class="profile-comparisons" data-comparison-list></div>
         <div class="profile-empty hidden" data-comparison-empty>No tienes comparativas guardadas.</div>
-      </section>
-
-      <section class="card profile-section" aria-labelledby="followTitle">
-        <div>
-          <h2 id="followTitle">Red de seguimiento</h2>
-          <p class="form__helper">
-            Sigue cuentas de tu mismo segmento para recibir actualizaciones en tu panel. Los menores de edad solo pueden seguir perfiles de menores aprobados.
-          </p>
-        </div>
-        <form class="profile-inline-form" data-follow-form>
-          <div class="form__field">
-            <label class="form__label" for="followInput">Buscar por nombre</label>
-            <input class="form__input" type="text" id="followInput" name="query" placeholder="Nombre o nickname" />
-          </div>
-          <div class="form__field" style="align-self: end">
-            <button class="btn btn--primary" type="submit">Seguir</button>
-          </div>
-          <div class="form__field" style="grid-column: 1 / -1">
-            <p class="profile-form-feedback" data-follow-feedback></p>
-          </div>
-        </form>
-        <div class="profile-follow-list" data-following-list></div>
-        <div class="profile-empty hidden" data-following-empty>No sigues a nadie por ahora.</div>
       </section>
 
       <section class="card profile-section hidden" aria-labelledby="accountCloseTitle" data-account-close-card>

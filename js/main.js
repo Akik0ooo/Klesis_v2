@@ -15,7 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   configureBrandLink();
   configureNavigation(storage, currentUser);
+  ensureGlobalSearchBar();
+  initGlobalSearch(currentUser);
   activateDropdowns();
+  initQuizCardNavigation();
   toggleLanding(activeSegment);
   initSupportForm(currentUser);
 });
@@ -79,7 +82,7 @@ function configureNavigation(storage, currentUser) {
       logout.className = "btn btn--outline";
       logout.type = "button";
       logout.setAttribute("data-logout", "true");
-      logout.textContent = "Salir";
+      logout.textContent = "Cerrar sesión";
       navActions.appendChild(logout);
     } else {
       const primaryCta = document.createElement("a");
@@ -102,6 +105,223 @@ function configureNavigation(storage, currentUser) {
       navActions.dataset.logoutBound = "true";
     }
   }
+}
+
+function ensureGlobalSearchBar() {
+  if (document.querySelector(".page-search")) {
+    return;
+  }
+
+  const header = document.querySelector("header");
+  if (!header) {
+    return;
+  }
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "page-search";
+  wrapper.innerHTML = [
+    '<form class="page-search__form" data-global-search>',
+    '  <label class="sr-only" for="autoGlobalSearchInput">Buscar en Klesis</label>',
+    '  <input class="page-search__input" type="search" id="autoGlobalSearchInput" name="q" placeholder="Busca carreras, misiones o soporte" autocomplete="off" />',
+    '  <button class="btn btn--primary page-search__button" type="submit">Buscar</button>',
+    '</form>',
+    '<div class="page-search__results hidden" data-global-search-results aria-live="polite"></div>'
+  ].join("");
+
+  header.insertAdjacentElement("afterend", wrapper);
+}
+
+function initGlobalSearch(currentUser) {
+  const form = document.querySelector("[data-global-search]");
+  if (!form) {
+    return;
+  }
+
+  const input = form.querySelector("input[type=\"search\"]");
+  const resultsNode = document.querySelector("[data-global-search-results]");
+  const catalog = window.CareersCatalog;
+  const searchWrapper = form.closest(".page-search");
+
+  const hideInlineResults = () => {
+    if (!resultsNode) {
+      return;
+    }
+    resultsNode.classList.add("hidden");
+    resultsNode.innerHTML = "";
+  };
+
+  const showInlineResults = (rawQuery, { allowEmptyState = false } = {}) => {
+    if (!catalog || !resultsNode) {
+      return false;
+    }
+
+    const normalized = normalizeSearchQuery(rawQuery);
+    if (!shouldShowInlineCareerResults(normalized)) {
+      hideInlineResults();
+      return false;
+    }
+
+    const matches = catalog.filter({ query: rawQuery });
+    if (matches.length) {
+      renderInlineCareerResults(resultsNode, matches, rawQuery);
+      resultsNode.classList.remove("hidden");
+      return true;
+    }
+
+    if (allowEmptyState && normalized.includes("carrer")) {
+      renderNoCareerResults(resultsNode, rawQuery);
+      resultsNode.classList.remove("hidden");
+      return true;
+    }
+
+    hideInlineResults();
+    return false;
+  };
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const query = input?.value.trim() ?? "";
+    const encodedQuery = encodeURIComponent(query);
+    const target = query
+      ? `page/carreras.html?q=${encodedQuery}`
+      : "page/carreras.html";
+    hideInlineResults();
+    window.location.href = resolvePath(target);
+  });
+
+  input?.addEventListener("input", () => {
+    const query = input.value.trim();
+    if (!query) {
+      hideInlineResults();
+      return;
+    }
+
+    showInlineResults(query);
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!resultsNode || resultsNode.classList.contains("hidden")) {
+      return;
+    }
+    if (searchWrapper?.contains(event.target)) {
+      return;
+    }
+    hideInlineResults();
+  });
+
+  form.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      hideInlineResults();
+    }
+  });
+}
+
+function getSearchDestination(query, currentUser) {
+  const normalized = query.toLowerCase();
+
+  if (/(misi|mision|misiones|aventur|juego|ludi)/.test(normalized)) {
+    return "page/tarea/otros-test.html";
+  }
+
+  if (/(plan|vocaci|carrera|profesi|diagnost|evaluaci)/.test(normalized)) {
+    const encoded = encodeURIComponent(query.trim());
+    return encoded ? `page/carreras.html?q=${encoded}` : "page/carreras.html";
+  }
+
+  if (/(foro|comunidad|debate|seguro)/.test(normalized)) {
+    return "page/foro.html";
+  }
+
+  if (/(soporte|ayuda|mentor|contacto|atenci|tutor)/.test(normalized)) {
+    return "page/soporte/atencion.html";
+  }
+
+  if (/(perfil|configura|cuenta|datos)/.test(normalized)) {
+    return currentUser ? "page/perfil/perfil.html" : "page/auth/segment.html";
+  }
+
+  return `page/carreras.html${query ? `?q=${encodeURIComponent(query)}` : ""}`;
+}
+
+function shouldShowInlineCareerResults(normalizedQuery) {
+  if (!normalizedQuery) {
+    return false;
+  }
+
+  if (/(misi|plan|vocaci|soporte|foro|cuenta|perfil|config|login|registr)/.test(normalizedQuery)) {
+    return false;
+  }
+
+  return true;
+}
+
+function normalizeSearchQuery(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLowerCase();
+}
+
+function renderInlineCareerResults(node, matches, query) {
+  const limited = matches.slice(0, 6);
+  const encodedQuery = encodeURIComponent(query.trim());
+  const catalogHref = encodedQuery
+    ? resolvePath(`page/carreras.html?q=${encodedQuery}`)
+    : resolvePath("page/carreras.html");
+  const items = limited
+    .map(
+      (career) => `
+        <li>
+          <a class="page-search__result" href="${resolvePath(`page/tarea/detallescarrera.html?career=${encodeURIComponent(career.id)}`)}">
+            <span class="page-search__result-emoji">${career.emoji}</span>
+            <div class="page-search__result-body">
+              <strong>${escapeHtml(career.name)}</strong>
+              <p>${escapeHtml(career.summary)}</p>
+            </div>
+          </a>
+        </li>
+      `
+    )
+    .join("");
+
+  node.innerHTML = `
+    <header class="page-search__results-header">
+      <span>Resultados para “${escapeHtml(query)}”</span>
+      <span class="page-search__results-count">${matches.length}</span>
+    </header>
+    <ul class="page-search__results-list">${items}</ul>
+    <div class="page-search__results-footer">
+      <a class="page-search__cta" href="${catalogHref}">Ver más</a>
+    </div>
+  `;
+}
+
+function renderNoCareerResults(node, query) {
+  const encodedQuery = encodeURIComponent(query.trim());
+  const catalogHref = encodedQuery
+    ? resolvePath(`page/carreras.html?q=${encodedQuery}`)
+    : resolvePath("page/carreras.html");
+  node.innerHTML = `
+    <header class="page-search__results-header">
+      <span>Resultados para “${escapeHtml(query)}”</span>
+      <span class="page-search__results-count">0</span>
+    </header>
+    <p style="margin: 0; font-size: 0.95rem; color: rgba(15, 23, 42, 0.7);">
+      No encontramos carreras que coincidan con tu búsqueda. Intenta con otro término.
+    </p>
+    <div class="page-search__results-footer">
+      <a class="page-search__cta" href="${catalogHref}">Ver más</a>
+    </div>
+  `;
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function createDropdown(segment) {
@@ -202,6 +422,31 @@ function activateDropdowns() {
   });
 }
 
+function initQuizCardNavigation() {
+  const body = document.body;
+  if (!body || body.dataset.cardNavBound === "true") {
+    return;
+  }
+
+  document.addEventListener("click", (event) => {
+    const trigger = event.target.closest("[data-card-nav]");
+    if (!trigger) {
+      return;
+    }
+
+    event.preventDefault();
+    const target = trigger.getAttribute("data-card-nav");
+    if (!target) {
+      return;
+    }
+
+    const href = target.startsWith("http") || target.startsWith("/") ? target : resolvePath(target);
+    window.location.href = href;
+  });
+
+  body.dataset.cardNavBound = "true";
+}
+
 function toggleLanding(segment) {
   const views = document.querySelectorAll("[data-segment-view]");
   if (!views.length) {
@@ -298,7 +543,7 @@ function getNavLinkConfig(segment) {
   const guestLinks = [
     { label: "Autenticación", path: "page/auth/segment.html", match: "segment.html" },
     { label: "Plan profesional", path: "page/tarea/vocacional.html", match: "vocacional.html" },
-    { label: "Misiones", path: "page/tarea/otros-test.html", match: "otros-test.html" },
+    { label: "Tests", path: "page/tarea/otros-test.html", match: "otros-test.html" },
     { label: "Atención", path: "page/soporte/atencion.html", match: "atencion.html" },
   ];
 
@@ -328,7 +573,7 @@ function getDropdownItems(segment) {
   if (segment === "adult") {
     return [
       { label: "Mi perfil", path: "page/perfil/perfil.html" },
-      { label: "Buscar carreras", path: "page/perfil/perfil.html?buscar=carreras" },
+      { label: "Buscar carreras", path: "page/carreras.html" },
       { label: "Evaluación profesional", path: "page/tarea/vocacional.html" },
       { label: "Foro (adultos)", path: "page/foro.html" },
       { label: "Solicitar mentoría", path: "page/soporte/atencion.html" },
@@ -338,8 +583,8 @@ function getDropdownItems(segment) {
   if (segment === "minor") {
     return [
       { label: "Mi perfil", path: "page/perfil/perfil.html" },
-      { label: "Buscar carreras", path: "page/perfil/perfil.html?buscar=carreras" },
-      { label: "Misiones activas", path: "page/tarea/otros-test.html" },
+      { label: "Buscar carreras", path: "page/carreras.html" },
+      { label: "Quizzies activos", path: "page/tarea/otros-test.html" },
       { label: "Zona segura", path: "page/soporte/atencion.html" },
       { label: "Cambiar de cuenta", path: "page/auth/login_menor.html" },
     ];

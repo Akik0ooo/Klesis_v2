@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Carreras | Klesis</title>
+    <meta name="description" content="Explora el catálogo de carreras de Klesis con filtros por áreas y recomendaciones personalizadas." />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script defer src="../js/storage.js"></script>
+    <script defer src="../js/careers_catalog.js"></script>
+    <script defer src="../js/main.js"></script>
+    <script defer src="../js/careers_page.js"></script>
+  </head>
+  <body data-base-path="../">
+    <header>
+      <nav class="nav" aria-label="Principal">
+        <a class="nav__brand" href="../index.html">
+          <span class="nav__brand-badge" aria-hidden="true">K</span>
+          Klesis
+        </a>
+        <div class="nav__links" role="list">
+          <a href="auth/segment.html">Autenticación</a>
+          <a href="tarea/vocacional.html">Plan profesional</a>
+          <a href="tarea/otros-test.html">Misiones</a>
+          <a href="soporte/atencion.html">Atención</a>
+        </div>
+        <div class="nav__actions">
+          <div class="nav__dropdown" data-dropdown>
+            <button
+              class="btn btn--outline nav__dropdown-toggle"
+              type="button"
+              data-dropdown-toggle
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="navExploreMenu"
+            >
+              Explorar
+              <span class="nav__dropdown-icon" aria-hidden="true">▾</span>
+            </button>
+            <div class="nav__dropdown-menu hidden" id="navExploreMenu" role="menu" data-dropdown-menu>
+              <a role="menuitem" href="tarea/vocacional.html">Plan profesional</a>
+              <a role="menuitem" href="tarea/otros-test.html">Misiones</a>
+              <a role="menuitem" href="soporte/atencion.html">Atención</a>
+              <a role="menuitem" href="foro.html">Foro (adultos)</a>
+            </div>
+          </div>
+          <a class="btn btn--primary" href="auth/segment.html">Crear cuenta</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="careers-page">
+      <section class="careers-hero">
+        <h1>Catálogo de carreras</h1>
+        <p>
+          Descubre trayectorias profesionales con filtros por áreas, programas y regiones. Cada ficha combina fortalezas,
+          universidades sugeridas y el contexto de Klesis.
+        </p>
+      </section>
+
+      <section class="careers-explorer">
+        <aside class="careers-filter" aria-label="Filtrar por áreas de interés">
+          <h2 class="careers-filter__title">Áreas de interés</h2>
+          <label class="careers-filter__search">
+            <span aria-hidden="true">🔎</span>
+            <input type="search" autocomplete="off" placeholder="Buscar área" data-careers-area-search />
+          </label>
+          <div class="careers-filter__group" data-careers-areas></div>
+          <button class="careers-filter__clear" type="button" data-careers-clear>
+            Limpiar filtros
+          </button>
+        </aside>
+        <div>
+          <header class="careers-results-header">
+            <strong><span data-careers-count>0</span> carreras disponibles</strong>
+            <label class="careers-search">
+              <span aria-hidden="true">🔍</span>
+              <input
+                type="search"
+                name="careerQuery"
+                autocomplete="off"
+                placeholder="Buscar por nombre, región o programa"
+                data-careers-query
+              />
+            </label>
+          </header>
+          <div class="careers-grid" data-careers-grid></div>
+          <nav class="careers-pagination hidden" data-careers-pagination aria-label="Paginación de carreras"></nav>
+          <p class="careers-empty hidden" data-careers-empty>
+            No encontramos carreras con los filtros actuales. Prueba cambiando el término de búsqueda o limpiando el área.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
